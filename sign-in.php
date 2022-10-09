@@ -35,7 +35,7 @@
                         <form id="sign-in" class="php-email-form">
                             <div class="row">
                                 <div class="form-group col-md-12 mt-3">
-                                    <label for="name">Your Email</label>
+                                    <label for="name">Email</label>
                                     <input type="email" class="form-control" id="name" name="email">
                                 </div>
 

@@ -44,15 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $rows = $statement->fetchAll();
         $num_rows = count($rows);
         if ($num_rows > 0) {
-            $result = $statement->fetch(\PDO::FETCH_ASSOC);
-            if ($result["status"] == 0){
+            if ($rows[0]["status"] == 0){
                 echo 2;
             }
 
             else {
-                $_SESSION['id'] = $result["id"];
-                $_SESSION['name'] = $result["firstname"]." ".$result["lastname"];
-                $_SESSION['type'] = $result["type"];
+                $_SESSION['id'] = $rows[0]["id"];
+                $_SESSION['name'] = $rows[0]["firstname"]." ".$rows[0]["lastname"];
+                $_SESSION['type'] = $rows[0]["type"];
                 echo 1;
             }
         } else {

@@ -26,7 +26,11 @@ $(document).ready(function () {
                     }
 
                     else {
-
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Wrong username/password.',
+                            icon: 'error'
+                        })
                     }
 
                 }
