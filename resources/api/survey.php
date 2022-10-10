@@ -1,6 +1,6 @@
 <?php include 'connection.php';
-
-$id = 2;
+session_start();
+$id = $_SESSION['id'];
 $surveyId = $_POST["surveyId"];
 $count = count($_POST)-2;
 
@@ -15,6 +15,4 @@ for ($i=0; $i<$count; $i++) {
 }
 
 echo 1;
-
-
 

@@ -1,7 +1,7 @@
 <?php include 'connection.php';
-
+session_start();
 $survey_id = $_GET['surveyId'];
-$id = 2;
+$id = $_SESSION['id'];
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
   $sql = 'SELECT * FROM answers WHERE survey_id= :survey_id AND user_id=:user_id';

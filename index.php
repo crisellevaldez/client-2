@@ -1,3 +1,7 @@
+<?php
+  session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +13,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
   <?php include 'includes/sources.html' ?>
+  <script src="resources/js/sign-out.js"> </script>
 </head>
 
 <body>

@@ -4,6 +4,38 @@ function activate(email) {
     $('#btn-submit').html(`Sign Up`).attr("disabled", true);;
 }
 
+function signIn() {
+    Swal.fire({
+        title: '',
+        html: `<b> Republic Act 10173 – Data Privacy Act of 2012 seeks to protect all forms of information, 
+        be it private, personal, or sensitive. It is meant to cover both natural and juridical persons involved 
+        in the processing of personal information. </b> <br> <br> The aim of this survey is to assist the School Management 
+        Team to identify the main areas and causes of potential stress at work so that any risks to your health,
+        safety and wellbeing can be reduced. but please be assured that any information you do provide 
+        will be treated confidentially.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Proceed',
+        width: '800px'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = "dashboard.php";
+        }
+
+        else {
+            $.ajax({
+                url: "resources/api/sign-out.php",
+                method: "GET",
+                success: function (res) {
+                    location.href= "sign-in.php";
+                }
+            })
+        }
+    })
+}
+
 $(document).ready(function () {
 
     $('#sign-up').on('submit', function (e) {
@@ -42,7 +74,7 @@ $(document).ready(function () {
 
             password: {
                 required: true,
-                min: 5
+                minlength: 5
             },
 
             cPassword: {
@@ -63,7 +95,7 @@ $(document).ready(function () {
         messages: {
             password: {
                 required: "Please enter your password.",
-                min: "Please enter at least 5 characters long.",
+                minlength: "Please enter at least 5 characters long.",
             },
 
             cPassword: {
@@ -114,7 +146,7 @@ $(document).ready(function () {
                         })
 
                         setTimeout(function () {
-                            location.href = "dashboard.php";
+                            signIn();
                         }, 2000);
 
                     }

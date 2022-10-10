@@ -1,3 +1,17 @@
+<?php
+  session_start();
+  if(isset($_SESSION['id'])){
+
+    if($_SESSION['type'] == 2){
+        header('location: dashboard.php');
+    }
+
+    else {
+        header('location: admin.php');
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +24,7 @@
     <meta content="" name="keywords">
     <?php include 'includes/sources.html' ?>
     <script src="resources/js/sign-in.js"> </script>
+
 </head>
 
 <body>
