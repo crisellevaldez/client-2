@@ -44,7 +44,7 @@ $(document).ready(function () {
         if ($(this).valid()) {
             $('#btn-submit').html(`Sign Up <div class="spinner-border spinner-border-sm" role="status">
                 <span class="visually-hidden">Loading...</span>
-            </div>`).attr("disabled", true);;
+            </div>`).attr("disabled", true);
             let data = new FormData(this);
             $.ajax({
                 url: "resources/api/sign-up.php",

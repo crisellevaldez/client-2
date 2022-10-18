@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $male = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         $array[0] = $male;
-        $sql = "SELECT COUNT(id) as count FROM users WHERE gender='Male'";
+        $sql = "SELECT COUNT(id) as count FROM users WHERE gender='Female'";
         $stmt = $conn->prepare($sql);
 
         $stmt->execute();

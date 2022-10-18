@@ -17,7 +17,7 @@ if (isset($_SESSION['id'])) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Arsha Bootstrap Template - Index</title>
+    <title>Dasboard</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <?php include 'includes/sources.html' ?>

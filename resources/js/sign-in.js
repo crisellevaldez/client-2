@@ -60,7 +60,7 @@ $(document).ready(function () {
                     else {
                         Swal.fire({
                             title: 'Error',
-                            text: 'Wrong username/password.',
+                            text: 'Wrong email/password.',
                             icon: 'error'
                         })
                     }

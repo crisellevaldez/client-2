@@ -9,7 +9,7 @@ function GetURLParameter(sParam) {
     }
 }
 
-$(function () {
+$(document).ready(function () {
 
     let surveyId = GetURLParameter('survey-id');
     $.ajax({
@@ -51,7 +51,7 @@ $(function () {
 
             else {
                 let questions = JSON.parse(res);
-                let rows = `<div class="col-lg-12 mb-5 mb-lg-0 section-title">
+                let rows = `<div class="col-lg-12 mb-5 mb-lg-0 section-title" data-aos="fade-up">
                                 <h2 class="my-5 display-3 fw-bold ls-tight">
                                     <br>
                                     <span> ${questions[0].title} </span></span>
@@ -106,7 +106,7 @@ $(function () {
                 }
 
 
-                rows += `<button type="submit" class="btn btn-custom w-25 p-2 float-end">Submit</button>`;
+                rows += `<button type="submit" id="btn-submit" class="btn btn-custom w-25 p-2 float-end">Submit</button>`;
 
                 $('form').html(rows);
             }
@@ -117,6 +117,10 @@ $(function () {
     $('form').on('submit', function (e) {
         e.preventDefault();
         if ($('form').valid()) {
+            $('#btn-submit').html(`Submit <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`).attr("disabled", true);
+
             let surveyId = GetURLParameter('survey-id');
             let data = new FormData(this);
             data.append("surveyId", surveyId);
@@ -135,7 +139,7 @@ $(function () {
                             timer: 1500
                         })
 
-                        setTimeout(function(){location.href = 'results.php'}, 1500);
+                        setTimeout(function(){location.href = `result.php?survey-id=${surveyId}`}, 1500);
                     }
                 }
             });

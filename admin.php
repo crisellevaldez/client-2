@@ -19,7 +19,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Arsha Bootstrap Template - Index</title>
+    <title>Admin</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <?php include 'includes/sources.html' ?>
@@ -101,7 +101,7 @@
 
                 <div class="row mt-5">
                     <div class="col-lg-6 ">
-                            <label> Select Factor to view Chart: </label>
+                            <label> Select a Question to view Chart: </label>
                             <select id="survey" class="form-select form-select-lg mt-2">
                                 
                             </select>
