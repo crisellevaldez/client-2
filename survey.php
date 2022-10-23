@@ -1,8 +1,13 @@
 <?php
-  session_start();
-  if(!(isset($_SESSION['id']))){
+session_start();
+if (isset($_SESSION['id'])) {
+
+    if ($_SESSION['type'] == 1) {
+        header('location: admin.php');
+    }
+} else {
     header('location: sign-in.php');
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +35,8 @@
             <div class="container">
 
                 <ol>
-                    <li><a href="dashboard.php">All Factors</a></li>
-                    <li> Factor </li>
+                    <li><a href="dashboard.php">All Surveys</a></li>
+                    <li> Survey </li>
                 </ol>
 
             </div>

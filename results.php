@@ -1,6 +1,12 @@
 <?php
 session_start();
-if (!(isset($_SESSION['id']))) {
+if (isset($_SESSION['id'])) {
+
+    if ($_SESSION['type'] == 1) {
+        header('location: admin.php');
+    }
+    
+} else {
     header('location: sign-in.php');
 }
 ?>
