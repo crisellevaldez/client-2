@@ -14,6 +14,8 @@
           <li><a class="nav-link scrollto" href="dashboard.php">Dashboard</a></li>
           <li class="dropdown"><a href="#"><span> <?php echo $_SESSION['name']; ?> </span> <i class="bi bi-chevron-down"></i></a>
             <ul>
+  
+              <li><a href="profile.php">Profile</a></li>
               <li><a href="#" id="sign-out">Sign Out</a></li>
             </ul>
           </li>
