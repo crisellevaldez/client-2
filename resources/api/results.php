@@ -7,9 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET["survey-id"])) {
         
         $surveyId = $_GET["survey-id"];
-        $sql = 'SELECT SUM(answers.answer) as result, survey_set.id, survey_set.title, survey_set.description FROM answers INNER JOIN survey_set ON answers.survey_id = survey_set.id WHERE answers.user_id= :user_id and survey_set.id = :survey_id GROUP BY survey_set.id, survey_set.title, survey_set.description';
+        $date = $_GET["date"];
+        $sql = 'SELECT SUM(answers.answer) as result, survey_set.id, survey_set.title, survey_set.description FROM answers INNER JOIN survey_set ON answers.survey_id = survey_set.id WHERE answers.user_id= :user_id and survey_set.id = :survey_id and answers.date_created = :date GROUP BY survey_set.id, survey_set.title, survey_set.description';
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['user_id' => $id, 'survey_id' => $surveyId]);
+        $stmt->execute(['user_id' => $id, 'survey_id' => $surveyId, 'date' => $date]);
         $rows = $stmt->fetchAll();
 
         $results = array();

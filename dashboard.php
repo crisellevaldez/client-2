@@ -62,6 +62,7 @@ if (isset($_SESSION['id'])) {
     </section>
 
     <?php include 'includes/sources-2.html' ?>
+    <?php include 'includes/footer.html' ?>
 </body>
 
 </html>

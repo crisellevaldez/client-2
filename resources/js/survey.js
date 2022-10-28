@@ -39,7 +39,7 @@ $(document).ready(function () {
 
                 Swal.fire({
                     title: 'Error',
-                    text: 'You already answered this factor. Please choose another one.',
+                    text: 'You already answered this survey this month. Please choose another one or come back again next month.',
                     icon: 'error',
                     showConfirmButton: false
                 })
@@ -139,7 +139,7 @@ $(document).ready(function () {
                             timer: 1500
                         })
 
-                        setTimeout(function(){location.href = `result.php?survey-id=${surveyId}`}, 1500);
+                        setTimeout(function(){location.href = `result-survey.php?survey-id=${surveyId}`}, 1500);
                     }
                 }
             });

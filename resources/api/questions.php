@@ -4,11 +4,15 @@ $survey_id = $_GET['surveyId'];
 $id = $_SESSION['id'];
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-  $sql = 'SELECT * FROM answers WHERE survey_id= :survey_id AND user_id=:user_id';
+  $date = date("Y-m-01");
+  $date1 = date("Y-m-d", strtotime("+1 month", strtotime($date)));
+  $sql = 'SELECT * FROM answers WHERE survey_id= :survey_id AND user_id=:user_id AND date_created >= :date and date_created < :date1';
   $stmt = $conn->prepare($sql);
   $stmt->execute(array(
       ':survey_id' => $survey_id,
-      ':user_id' => $id
+      ':user_id' => $id,
+      ':date' => $date,
+      ':date1' => $date1
   ));
 
   if ($stmt->rowCount() > 0) {
