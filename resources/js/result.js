@@ -66,6 +66,7 @@ $(document).ready(function () {
                                         <p>${datum.description}</p>`;
 
                             if (percentage >= 66) {
+                                let random = Math.floor(Math.random() * 5) + 1;
                                 rows += `<div class="alert alert-danger" role="alert">
                                         <h4> Results: ${percentage}% </h4> High Stress
                                         </div>
@@ -99,14 +100,20 @@ $(document).ready(function () {
                                             “We’re all capable of moving through our current situation and coming out the other side.”
                                             <br>
                                             <br>
-                                            *tas yung randod video na*
                                             
+                                            <video class="w-100" controls>
+                                                <source src="resources/results/high/videos/${random}.mp4" type="video/mp4">
+                                                <source src="resources/results/high/videos/${random + 1}.mp4" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <br><br>
                                             If you are looking for someone to reach out to or talk to please don't be shy and call us!
                                             <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
                                         </div>`;
                             }
 
                             else if (percentage >= 33) {
+                                let random = Math.floor(Math.random() * 7) + 1;
                                 rows += `<div class="alert alert-warning" role="alert">
                                         <h4> Results: ${percentage}% </h4> Medium Stress
                                         </div>
@@ -124,14 +131,21 @@ $(document).ready(function () {
                                         <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health. - description ng solution
                                         That’s because chronic stress harms health and increases your risk of health conditions 
                                         such as heart disease, anxiety disorders, and depression.
-                                        
-                                        *tas yung randod video na*
+                                        <br><br>
+
+                                        <video class="w-100" controls>
+                                            <source src="resources/results/med/videos/${random}.mp4" type="video/mp4">
+                                            <source src="resources/results/med/videos/${random + 1}.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <br><br>
                                         If you are looking for someone to reach out to or talk to please don't be shy and call us!
                                             <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
                                         </div>`;
                             }
 
                             else {
+                                let random = Math.floor(Math.random() * 6) + 1;
                                 rows += `<div class="alert alert-success" role="alert">
                                         <h4> Results: ${percentage}% </h4> Low Stress
                                         </div>
@@ -159,10 +173,16 @@ $(document).ready(function () {
                                         <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health. - description ng solution
                                         That’s because chronic stress harms health and increases your risk of health conditions 
                                         such as heart disease, anxiety disorders, and depression.
+                                        <br><br>
+
+                                        <video class="w-100" controls>
+                                            <source src="resources/results/low/videos/${random}.mp4" type="video/mp4">
+                                            <source src="resources/results/low/videos/${random + 1}.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <br><br>
                                         
-                                        *tas yung random video na*
-                                        
-                                        <br><br>If you are looking for someone to reach out to or talk to please don't be shy and call us!
+                                        If you are looking for someone to reach out to or talk to please don't be shy and call us!
                                         <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
                                         </div>`;
                             }
