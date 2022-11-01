@@ -58,7 +58,7 @@ if (isset($_SESSION['id'])) {
                                     <input type="password" class="form-control" name="oPassword" id="oPassword" >
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="password">Password</label>
+                                    <label for="password">New Password</label>
                                     <input type="password" class="form-control" name="password" id="password" >
                                 </div>
                                 <div class="form-group col-md-4">

@@ -27,7 +27,7 @@
           <h1> Bulacan State University </h1>
           <h2> BULACAN STATE UNIVERSITY (BulSU) is the premiere state-operated institution of higher learning in the Cenral Luzon region. </h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            <a href="sign-in.php" class="btn-get-started scrollto">Get Started</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">

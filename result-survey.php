@@ -38,6 +38,9 @@ if (isset($_SESSION['id'])) {
 
             <div class="row">
                 <div class="col-12">
+                    <button type="button" class="btn btn-success float-end mb-3" data-bs-toggle="modal" data-bs-target="#modal" onclick="overAllResult()">
+                        Overall Result
+                    </button>
                     <table class="table bg-light table-bordered">
                         <thead>
                             <tr>

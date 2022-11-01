@@ -9,7 +9,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#about">About Us</a></li> -->
           <?php if(isset($_SESSION['id'])){ ?>
           <li><a class="nav-link scrollto" href="dashboard.php">Dashboard</a></li>
           <li class="dropdown"><a href="#"><span> <?php echo $_SESSION['name']; ?> </span> <i class="bi bi-chevron-down"></i></a>

@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $num_rows = count($rows);
 
         if ($num_rows > 0) {
-            $sql1 = 'SELECT COUNT(id) as questions FROM questions WHERE survey_id = :survey_id';
+            $sql1 = 'SELECT COUNT(id) as questions FROM answers WHERE survey_id = :survey_id and user_id = :user_id and date_created = :date';
             $stmt1 = $conn->prepare($sql1);
-            $stmt1->execute(['survey_id' => $surveyId]);
+            $stmt1->execute(['survey_id' => $surveyId, 'user_id' => $id, 'date' => $date]);
             $rows1 = $stmt1->fetch();
             foreach ($rows as $row) {
                 $results[] = $row;
