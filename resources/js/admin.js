@@ -22,6 +22,7 @@ $(document).ready(function () {
             let data = JSON.parse(res);
             let rows = ``;
 
+            rows += `<option value=""> Select Question </option>`;
             for (let question of data) {
                 rows += `<option value="${question.id}">${question.question}</option>`;
             }
@@ -30,8 +31,7 @@ $(document).ready(function () {
     });
 
     $('#survey').on('change', function (e) {
-        e.preventDefault();
-
+        
         $.ajax({
             url: "resources/api/chart.php",
             method: "GET",

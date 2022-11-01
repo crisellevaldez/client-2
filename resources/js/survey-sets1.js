@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
 
     $.ajax({
         url: "resources/api/survey-sets.php",
@@ -24,6 +24,58 @@ $(function () {
             
 
             $('#survey-sets').html(rows);
+        }
+    });
+
+    $('#add').on('submit', function (e) {
+        e.preventDefault();
+        if ($('#add').valid()) {
+
+            let data = new FormData(this);
+            data.append("add", 1);
+            $.ajax({
+                url: "resources/api/survey-sets.php",
+                data: data,
+                method: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    if (res == 1) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            text: 'Survey added.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+    }).validate({
+        rules: {
+            title: {
+                required: true
+            },
+
+            description: {
+                required: true
+            }
+
+        },
+        messages: {
+            title: {
+                required: "Please enter the survey title."
+            },
+
+            description: {
+                required: "Please enter the survey description."
+            }
         }
     });
 

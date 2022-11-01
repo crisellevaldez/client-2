@@ -1,15 +1,13 @@
 <?php
-  session_start();
-  if(isset($_SESSION['id'])){
+session_start();
+if (isset($_SESSION['id'])) {
 
-    if($_SESSION['type'] == 2){
+    if ($_SESSION['type'] == 2) {
         header('location: dashboard.php');
     }
-  }
-
-  else {
+} else {
     header('location: sign-in.php');
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,20 +36,27 @@
                 <div class="col-lg-12 mb-5 mb-lg-0 section-title">
                     <h2 class="my-5 display-3 fw-bold ls-tight">
                         <br>
-                        <span> Factors </span></span>
+                        <span> Surveys </span></span>
                     </h2>
                     <p style="color: hsl(217, 10%, 50.8%)">
                         Below are the following survey sets that you can update. </br>
                         <b> Note: </b> You cannot delete survey sets and questions that is already answered.
                     </p>
                 </div>
-                
-                <div class="col-lg-12 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
+                
+
+                <div class="col-lg-12 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+                
                     <div class="accordion-list">
                         <ul id="survey-sets">
 
                         </ul>
+                        <div class="mx-0">
+                            <button type="button" class="btn btn-primary float-end mt-3 mb-2" data-bs-toggle="modal" data-bs-target="#modal">
+                                Add Survey
+                            </button>
+                        </div>
                     </div>
 
                 </div>
@@ -59,6 +64,30 @@
 
         </div>
     </section>
+
+    <div class="modal" tabindex="-1" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Survey</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add">
+                        <div class="form-group col-md-12">
+                            <label for="name">Survey Title:</label>
+                            <textarea class="form-control" name="title" required></textarea>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="name">Survey Description:</label>
+                            <textarea class="form-control" name="description" required></textarea>
+                        </div>
+                        <div class="text-center float-end mt-2"><button class="btn btn-custom-1" type="submit">Add</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php include 'includes/sources-2.html' ?>
     <?php include 'includes/footer.html' ?>

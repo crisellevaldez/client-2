@@ -81,7 +81,7 @@ function deleteSurvey(){
                     else {
                         Swal.fire({
                             title: 'Error',
-                            text: 'You cannot surveys with answers.',
+                            text: 'You cannot delete surveys with answers.',
                             icon: 'error',
                             showConfirmButton: false
                         })
