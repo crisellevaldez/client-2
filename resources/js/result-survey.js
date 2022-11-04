@@ -67,7 +67,7 @@ function overAllResult() {
 
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-4">
-                                                <img width="500px" height="600px" src="resources/results/high/imgs/${random1}.jpg">
+                                                <img class="w-100" height="600px" src="resources/results/high/imgs/${random1}.jpg">
                                             </div>
 
                                             <div class="col-lg-6 col-xl-8">
@@ -137,7 +137,7 @@ function overAllResult() {
                                     <div>
                                     <div class="row">
                                         <div class="col-lg-6 col-xl-4">
-                                        <img width="500px" height="600px" src="resources/results/med/imgs/8.jpg">
+                                            <img class="w-100" height="600px" src="resources/results/med/imgs/8.jpg">
                                         </div>
                                         <div class="col-lg-6 col-xl-8">
                                             You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
@@ -149,7 +149,7 @@ function overAllResult() {
                                             <br>4. Staying connected to your family and friends and asking for support if you need to.
                                             <br>5. Practice Mindfulness
                                             
-                                            <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health. - description ng solution
+                                            <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
                                             That’s because chronic stress harms health and increases your risk of health conditions 
                                             such as heart disease, anxiety disorders, and depression.
                                         </div>
@@ -192,7 +192,7 @@ function overAllResult() {
                                     <div>
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-4">
-                                                <img width="500px" height="600px" src="resources/results/low/imgs/${random1}.jpg">
+                                                <img class="w-100" height="600px" src="resources/results/low/imgs/${random1}.jpg">
                                             </div>
 
                                             <div class="col-lg-6 col-xl-8">
@@ -215,7 +215,7 @@ function overAllResult() {
                                                 <br>14. Practice deep breathing 
                                                 <br>15. Play with your pets
                                                 
-                                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health. - description ng solution
+                                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
                                                 That’s because chronic stress harms health and increases your risk of health conditions 
                                                 such as heart disease, anxiety disorders, and depression.
                                             </div>
@@ -317,7 +317,7 @@ function results(id, date) {
 
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-4">
-                                                <img width="500px" height="600px" src="resources/results/high/imgs/${random1}.jpg">
+                                                <img class="w-100" height="600px" src="resources/results/high/imgs/${random1}.jpg">
                                             </div>
 
                                             <div class="col-lg-6 col-xl-8">
@@ -387,7 +387,7 @@ function results(id, date) {
                                     <div>
                                     <div class="row">
                                         <div class="col-lg-6 col-xl-4">
-                                        <img width="500px" height="600px" src="resources/results/med/imgs/8.jpg">
+                                            <img class="w-100" height="600px" src="resources/results/med/imgs/8.jpg">
                                         </div>
                                         <div class="col-lg-6 col-xl-8">
                                             You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
@@ -399,7 +399,7 @@ function results(id, date) {
                                             <br>4. Staying connected to your family and friends and asking for support if you need to.
                                             <br>5. Practice Mindfulness
                                             
-                                            <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health. - description ng solution
+                                            <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
                                             That’s because chronic stress harms health and increases your risk of health conditions 
                                             such as heart disease, anxiety disorders, and depression.
                                         </div>
@@ -442,7 +442,7 @@ function results(id, date) {
                                     <div>
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-4">
-                                                <img width="500px" height="600px" src="resources/results/low/imgs/${random1}.jpg">
+                                                <img class="w-100" height="600px" src="resources/results/low/imgs/${random1}.jpg">
                                             </div>
 
                                             <div class="col-lg-6 col-xl-8">
@@ -465,7 +465,7 @@ function results(id, date) {
                                                 <br>14. Practice deep breathing 
                                                 <br>15. Play with your pets
                                                 
-                                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health. - description ng solution
+                                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
                                                 That’s because chronic stress harms health and increases your risk of health conditions 
                                                 such as heart disease, anxiety disorders, and depression.
                                             </div>

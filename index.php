@@ -1,5 +1,5 @@
 <?php
-  session_start(); 
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -24,14 +24,18 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1> Bulacan State University </h1>
-          <h2> BULACAN STATE UNIVERSITY (BulSU) is the premiere state-operated institution of higher learning in the Cenral Luzon region. </h2>
+          <h1> St. Dominic de Guzman School, Inc. </h1>
+          <h2> VISION<br>
+            St. Dominic de Guzman School , established by ominican Sisters of St. Joseph, is an evangelizing arm of the Catholic Church. Insired by its patron, St. Dominic de Guzman and its devotion to the Holy Eucharist and the Blessed Virgin Mary, the institution transforms the needy youth to live in truth and proclaim the gospel through prayer, study and service to the Society.
+            <br><br>
+            MISSION<br>
+            A center of excellence in Catholic Education foring holistic Dominican, Christ-inspired, competent lifelong learners and responsible citizens for meaningful life in the 21st Century. </h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="sign-in.php" class="btn-get-started scrollto">Get Started</a>
           </div>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="assets/img/bulsu.jpg" class="img-fluid animated" alt="">
+        <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+          <img src="resources/imgs/school.jpg" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
