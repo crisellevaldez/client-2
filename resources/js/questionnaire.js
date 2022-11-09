@@ -154,38 +154,43 @@ $(document).ready(function () {
             }
 
             else {
-                let questions = JSON.parse(res);
+                let data = JSON.parse(res);
+                let questions = data[0];
                 let rows = `  
                             <div class="mb-3 col-md-6">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Survey Title</label>
                                 <div class="col-sm-10">
                                 <input type="text" class="form-control" name="surveyTitle" value="${questions[0].title}" id="inputPassword">
-                                
-                                <button type="button" class="btn btn-primary float-top mt-3" data-bs-toggle="modal" data-bs-target="#modal">
-                                    Add Question
-                                </button>
-                                <button type="button" class="btn btn-danger float-top mt-3" onclick="deleteSurvey()">
-                                    Delete this survey
-                                </button>
-                                </div>
-                            </div>
+                                `;
 
-                            <div class="mb-3 col-md-6">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control"  name="surveyDesc" value="${questions[0].description}" id="inputPassword">
-                                </div>
-                            </div>
-                            
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Question</th>
-                                    <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>`;
+                                if (data[1].length == 0){
+                                    rows += `<button type="button" class="btn btn-primary float-top mt-3" data-bs-toggle="modal" data-bs-target="#modal">
+                                        Add Question
+                                    </button>`;
+                                }
+                                
+                                if (data[1].length == 0){
+                                    rows += `<button type="button" class="btn btn-danger float-top mt-3" style="margin-left: 5px" onclick="deleteSurvey()">
+                                        Delete this survey
+                                    </button>`;
+                                }
+                                rows += `</div></div>
+                                    <div class="mb-3 col-md-6">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+                                        <div class="col-sm-10">
+                                        <input type="text" class="form-control"  name="surveyDesc" value="${questions[0].description}" id="inputPassword">
+                                        </div>
+                                    </div>
+                                    
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Question</th>
+                                            <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
                 let count = 1;
 
                 if (questions[0].question != null){
@@ -193,11 +198,11 @@ $(document).ready(function () {
                         rows += `<tr>
                                     <th scope="row">${count}</th>
                                     <td class="w-75"> <textarea class="form-control" id="q-${question.id}">${question.question}</textarea> </td>
-                                    <td> <button type="button" class="btn btn-primary" onclick="updateQuestion(${question.id})">Update</button>
-                                         <button type="button" class="btn btn-danger" onclick="deleteQuestion(${question.id})">Delete</button>
-                                    </td>
-                                </tr>`;
-    
+                                    <td> <button type="button" class="btn btn-primary" onclick="updateQuestion(${question.id})">Update</button>`;
+                                    if (data[1].length == 0){
+                                        rows += `<button type="button" class="btn btn-danger" style="margin-left: 5px" onclick="deleteQuestion(${question.id})">Delete</button>`;
+                                    }
+                                    rows += `</td></tr>`;
                         count++;
                     }
                 }

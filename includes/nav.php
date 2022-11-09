@@ -1,21 +1,23 @@
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-
-      <h1 class="logo me-auto"><a href="index.php"> <img src="resources/imgs/logo.png"></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <a href="index.php" class="logo me-auto"><img src="resources/imgs/logo.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.php" id="home">Home</a></li>
           <!-- <li><a class="nav-link scrollto" href="#about">About Us</a></li> -->
-          <?php if(isset($_SESSION['id'])){ ?>
-          <li><a class="nav-link scrollto" href="dashboard.php">Dashboard</a></li>
-          <li class="dropdown"><a href="#"><span> <?php echo $_SESSION['name']; ?> </span> <i class="bi bi-chevron-down"></i></a>
+          <?php if(isset($_SESSION['id'])){ 
+                  $name = "Survey";
+                  if ($_SESSION['type'] == 1) {
+                    $name = "Dashboard";
+                  }
+            ?>
+          <li><a class="nav-link scrollto" id="dashboard" href="dashboard.php"> <?php echo $name; ?></a></li>
+          <li class="dropdown"><a href="#" class="profile"><span> <?php echo $_SESSION['name']; ?> </span> <i class="bi bi-chevron-down"></i></a>
             <ul>
   
-              <li><a href="profile.php">Profile</a></li>
+              <li><a href="profile.php" class="profile">Profile</a></li>
               <li><a href="#" id="sign-out">Sign Out</a></li>
             </ul>
           </li>

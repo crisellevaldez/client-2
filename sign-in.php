@@ -31,8 +31,8 @@
     <?php include 'includes/nav.php' ?>
 
     <!-- ======= Contact Section ======= -->
-    <div class="container mt-5">
-        <section id="" class="contact">
+    <div class="container">
+        <section id="" class="contact" style="margin-top: 130px">
             <div class="container" data-aos="fade-up">
 
                 <div class="row">
@@ -42,7 +42,8 @@
                             <span> Sign In</span></span>
                         </h2>
                         <p style="color: hsl(217, 10%, 50.8%)">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ab tenetur, est distinctio atque quam, dolor placeat corrupti adipisci quis officiis, veniam consequuntur omnis perspiciatis similique facilis nobis corporis incidunt.
+                            Sign In or Sign Up to view and answer the survey sets provided. Please contact
+                            the school admistrator if you have any concerns.
                         </p>
                     </div>
 

@@ -28,8 +28,8 @@ if (isset($_SESSION['id'])) {
 <body>
     <?php include 'includes/nav.php' ?>
 
-    <section id="services" class="services section-bg mt-5">
-        <div class="container" data-aos="fade-up">
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up" style="margin-top: 120px">
 
             <div class="section-title">
                 <h2>Result - History </h2>
@@ -70,7 +70,9 @@ if (isset($_SESSION['id'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="container">
                     
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -36,6 +36,7 @@ function overAllResult() {
                 let total = 5 * data[1][0];
                 let result = data[0][0].result / total;
                 let percentage = result * 100;
+                percentage = Math.round(percentage)
 
                 if (percentage == 0) {
                     $('.services').remove();
@@ -53,12 +54,11 @@ function overAllResult() {
 
                 else {
                     for (let datum of data[0]) {
+                        let visual = Math.floor(Math.random() * 3) + 1;
                         rows += `<div class="col-12" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="icon-box">`;
 
                         if (percentage >= 66) {
-                            let random = Math.floor(Math.random() * 5) + 1;
-                            let random1 = Math.floor(Math.random() * 3) + 1;
                             rows += `<div class="alert alert-danger" role="alert">
                                     <h4> Result: ${percentage}% </h4> High Stress
                                     </div>
@@ -66,11 +66,8 @@ function overAllResult() {
                                     <div>
 
                                         <div class="row">
-                                            <div class="col-lg-6 col-xl-4">
-                                                <img class="w-100" height="600px" src="resources/results/high/imgs/${random1}.jpg">
-                                            </div>
 
-                                            <div class="col-lg-6 col-xl-8">
+                                            <div class="col-12">
                                                 If you’re coping with an extremely stressful situation, consider using the following techniques to manage and ease those feelings. 
                                                 Deploying multiple stress management strategies can help you move forward in a more productive way.
                                                 <br><br>1. Start small 
@@ -100,27 +97,38 @@ function overAllResult() {
                                         </div>
                                         
                                         <br>
-                                        <br>
-                                        
-                                        <video class="w-100" controls>
-                                            <source src="resources/results/high/videos/${random}.mp4" type="video/mp4">
-                                            <source src="resources/results/high/videos/${random + 1}.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
+                                        <br>`;
 
-                                        <br><br>
-                                        <p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                            if (visual == 1) {
+                                let random = Math.floor(Math.random() * 5) + 1;
+                                rows += `<video class="w-100" controls>
+                                                        <source src="resources/results/high/videos/${random}.mp4" type="video/mp4">
+                                                        <source src="resources/results/high/videos/${random + 1}.mp4" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>`;
+                            }
 
-                                        <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                        <br>Hold for a count of 4
-                                        <br>Exhale for a count of 4 through your mouth.</p>
-                                        <audio class="w-50" controls>
-                                            <source src="resources/results/high/musics/${random}.mp3" type="video/mp4">
-                                            <source src="resources/results/high/musics/${random + 1}.mp3" type="video/mp4">
-                                            Your browser does not support the audio tag.
-                                        </audio>
+                            else if (visual == 2) {
+                                let random = Math.floor(Math.random() * 5) + 1;
+                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                                                    <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
+                                                    <br>Hold for a count of 4
+                                                    <br>Exhale for a count of 4 through your mouth.</p>
+                                                    <audio class="w-100" controls>
+                                                        <source src="resources/results/high/musics/${random}.mp3" type="video/mp4">
+                                                        <source src="resources/results/high/musics/${random + 1}.mp3" type="video/mp4">
+                                                        Your browser does not support the audio tag.
+                                                    </audio>`;
+                            }
 
-                                        <br><br>
+                            else {
+                                let random1 = Math.floor(Math.random() * 3) + 1;
+                                rows += `<div class="col-12 text-center">
+                                                <img class="img-fluid" src="resources/results/high/imgs/${random1}.jpg">
+                                            </div>`;
+                            }
+
+                            rows += `<br><br><br>
                                         If you are looking for someone to reach out to or talk to please don't be shy and call us!
                                         <div class="text-center">
                                             <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
@@ -129,17 +137,13 @@ function overAllResult() {
                         }
 
                         else if (percentage >= 33) {
-                            let random = Math.floor(Math.random() * 7) + 1;
                             rows += `<div class="alert alert-warning" role="alert">
                                     <h4> Result: ${percentage}% </h4> Medium Stress
                                     </div>
                                     
                                     <div>
                                     <div class="row">
-                                        <div class="col-lg-6 col-xl-4">
-                                            <img class="w-100" height="600px" src="resources/results/med/imgs/8.jpg">
-                                        </div>
-                                        <div class="col-lg-6 col-xl-8">
+                                        <div class="col-12">
                                             You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
 
                                             <br><br>Ways on how to relieve Medium level of stress:
@@ -154,48 +158,52 @@ function overAllResult() {
                                             such as heart disease, anxiety disorders, and depression.
                                         </div>
                                     </div>
-                                    <br><br>
+                                    <br><br>`;
 
-                                    <video class="w-100" controls>
-                                        <source src="resources/results/med/videos/${random}.mp4" type="video/mp4">
-                                        <source src="resources/results/med/videos/${random + 1}.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
+                            if (visual == 1) {
+                                let random = Math.floor(Math.random() * 7) + 1;
+                                rows += `<video class="w-100" controls>
+                                                    <source src="resources/results/med/videos/${random}.mp4" type="video/mp4">
+                                                    <source src="resources/results/med/videos/${random + 1}.mp4" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>`;
+                            }
 
-                                    <br><br>
-                                        <p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                            else if (visual == 2) {
+                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
+                                                <br>Hold for a count of 4
+                                                <br>Exhale for a count of 4 through your mouth.</p>
+                                                <audio class="w-100" controls>
+                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
+                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
+                                                    Your browser does not support the audio tag.
+                                                </audio>`;
+                            }
 
-                                        <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                        <br>Hold for a count of 4
-                                        <br>Exhale for a count of 4 through your mouth.</p>
-                                        <audio class="w-50" controls>
-                                            <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                            <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                            Your browser does not support the audio tag.
-                                        </audio>
+                            else {
+                                rows += `<div class="col-12 text-center">
+                                                    <img class="img-fluid" src="resources/results/med/imgs/8.jpg">
+                                                </div>`;
+                            }
 
-                                    <br><br>
-                                    If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                    <div class="text-center">
-                                        <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                    </div>
-                                    </div>`;
+
+                            rows += `<br><br><br>
+                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
+                                            <div class="text-center">
+                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
+                                            </div>
+                                            </div>`;
                         }
 
                         else {
-                            let random = Math.floor(Math.random() * 6) + 1;
-                            let random1 = Math.floor(Math.random() * 2) + 1;
                             rows += `<div class="alert alert-success" role="alert">
                                     <h4> Result: ${percentage}% </h4> Low Stress
                                     </div>
                                     
                                     <div>
                                         <div class="row">
-                                            <div class="col-lg-6 col-xl-4">
-                                                <img class="w-100" height="600px" src="resources/results/low/imgs/${random1}.jpg">
-                                            </div>
-
-                                            <div class="col-lg-6 col-xl-8">
+                                            <div class="col-12">
                                                 Based on your answer in the survey questionnaire, you have a low level of stress.
 
                                                 <br><br>Ways on how to relieve Low level of Stress:
@@ -220,40 +228,49 @@ function overAllResult() {
                                                 such as heart disease, anxiety disorders, and depression.
                                             </div>
                                         </div>
-                                    <br><br>
+                                    <br><br>`;
 
-                                    <video class="w-100" controls>
-                                        <source src="resources/results/low/videos/${random}.mp4" type="video/mp4">
-                                        <source src="resources/results/low/videos/${random + 1}.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                    <br><br>
+                            if (visual == 1) {
+                                let random = Math.floor(Math.random() * 6) + 1;
+                                rows += `<video class="w-100" controls>
+                                            <source src="resources/results/low/videos/${random}.mp4" type="video/mp4">
+                                            <source src="resources/results/low/videos/${random + 1}.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>`;
+                            }
 
-                                    <p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                            else if (visual == 2) {
+                                let random1 = Math.floor(Math.random() * 2) + 1;
+                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
+                                                <br>Hold for a count of 4
+                                                <br>Exhale for a count of 4 through your mouth.</p>
+                                                <audio class="w-100" controls>
+                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
+                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
+                                                    Your browser does not support the audio tag.
+                                                </audio>`;
+                            }
 
-                                        <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                        <br>Hold for a count of 4
-                                        <br>Exhale for a count of 4 through your mouth.</p>
-                                        <audio class="w-50" controls>
-                                            <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                            <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                            Your browser does not support the audio tag.
-                                        </audio>
-                                    
-                                    <br><br>
-                                    If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                    <div class="text-center">
-                                        <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                    </div>
-                                    </div>`;
+                            else {
+                                let random1 = Math.floor(Math.random() * 2) + 1;
+                                rows += `<div class="col-12 text-center">
+                                            <img class="img-fluid" src="resources/results/low/imgs/${random1}.jpg">
+                                        </div>`;
+                            }
+
+                            rows += `<br><br><br>
+                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
+                                            <div class="text-center">
+                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
+                                            </div>
+                                            </div>`;
                         }
-
-
                     }
                 }
 
                 rows += `</div> </div>`;
-                $('.modal-body').html(rows);
+                $('.modal-body .container').html(rows);
             }
         }
 
@@ -286,6 +303,7 @@ function results(id, date) {
                 let total = 5 * data[1][0];
                 let result = data[0][0].result / total;
                 let percentage = result * 100;
+                percentage = Math.round(percentage)
 
                 if (percentage == 0) {
                     $('.services').remove();
@@ -303,12 +321,11 @@ function results(id, date) {
 
                 else {
                     for (let datum of data[0]) {
+                        let visual = Math.floor(Math.random() * 3) + 1;
                         rows += `<div class="col-12" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="icon-box">`;
 
                         if (percentage >= 66) {
-                            let random = Math.floor(Math.random() * 5) + 1;
-                            let random1 = Math.floor(Math.random() * 3) + 1;
                             rows += `<div class="alert alert-danger" role="alert">
                                     <h4> Result: ${percentage}% </h4> High Stress
                                     </div>
@@ -316,11 +333,8 @@ function results(id, date) {
                                     <div>
 
                                         <div class="row">
-                                            <div class="col-lg-6 col-xl-4">
-                                                <img class="w-100" height="600px" src="resources/results/high/imgs/${random1}.jpg">
-                                            </div>
 
-                                            <div class="col-lg-6 col-xl-8">
+                                            <div class="col-12">
                                                 If you’re coping with an extremely stressful situation, consider using the following techniques to manage and ease those feelings. 
                                                 Deploying multiple stress management strategies can help you move forward in a more productive way.
                                                 <br><br>1. Start small 
@@ -350,27 +364,38 @@ function results(id, date) {
                                         </div>
                                         
                                         <br>
-                                        <br>
-                                        
-                                        <video class="w-100" controls>
-                                            <source src="resources/results/high/videos/${random}.mp4" type="video/mp4">
-                                            <source src="resources/results/high/videos/${random + 1}.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
+                                        <br>`;
 
-                                        <br><br>
-                                        <p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                            if (visual == 1) {
+                                let random = Math.floor(Math.random() * 5) + 1;
+                                rows += `<video class="w-100" controls>
+                                                        <source src="resources/results/high/videos/${random}.mp4" type="video/mp4">
+                                                        <source src="resources/results/high/videos/${random + 1}.mp4" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>`;
+                            }
 
-                                        <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                        <br>Hold for a count of 4
-                                        <br>Exhale for a count of 4 through your mouth.</p>
-                                        <audio class="w-50" controls>
-                                            <source src="resources/results/high/musics/${random}.mp3" type="video/mp4">
-                                            <source src="resources/results/high/musics/${random + 1}.mp3" type="video/mp4">
-                                            Your browser does not support the audio tag.
-                                        </audio>
+                            else if (visual == 2) {
+                                let random = Math.floor(Math.random() * 5) + 1;
+                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                                                    <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
+                                                    <br>Hold for a count of 4
+                                                    <br>Exhale for a count of 4 through your mouth.</p>
+                                                    <audio class="w-100" controls>
+                                                        <source src="resources/results/high/musics/${random}.mp3" type="video/mp4">
+                                                        <source src="resources/results/high/musics/${random + 1}.mp3" type="video/mp4">
+                                                        Your browser does not support the audio tag.
+                                                    </audio>`;
+                            }
 
-                                        <br><br>
+                            else {
+                                let random1 = Math.floor(Math.random() * 3) + 1;
+                                rows += `<div class="col-12 text-center">
+                                                <img class="img-fluid" src="resources/results/high/imgs/${random1}.jpg">
+                                            </div>`;
+                            }
+
+                            rows += `<br><br><br>
                                         If you are looking for someone to reach out to or talk to please don't be shy and call us!
                                         <div class="text-center">
                                             <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
@@ -379,17 +404,13 @@ function results(id, date) {
                         }
 
                         else if (percentage >= 33) {
-                            let random = Math.floor(Math.random() * 7) + 1;
                             rows += `<div class="alert alert-warning" role="alert">
                                     <h4> Result: ${percentage}% </h4> Medium Stress
                                     </div>
                                     
                                     <div>
                                     <div class="row">
-                                        <div class="col-lg-6 col-xl-4">
-                                            <img class="w-100" height="600px" src="resources/results/med/imgs/8.jpg">
-                                        </div>
-                                        <div class="col-lg-6 col-xl-8">
+                                        <div class="col-12">
                                             You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
 
                                             <br><br>Ways on how to relieve Medium level of stress:
@@ -404,48 +425,52 @@ function results(id, date) {
                                             such as heart disease, anxiety disorders, and depression.
                                         </div>
                                     </div>
-                                    <br><br>
+                                    <br><br>`;
 
-                                    <video class="w-100" controls>
-                                        <source src="resources/results/med/videos/${random}.mp4" type="video/mp4">
-                                        <source src="resources/results/med/videos/${random + 1}.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
+                            if (visual == 1) {
+                                let random = Math.floor(Math.random() * 7) + 1;
+                                rows += `<video class="w-100" controls>
+                                                    <source src="resources/results/med/videos/${random}.mp4" type="video/mp4">
+                                                    <source src="resources/results/med/videos/${random + 1}.mp4" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>`;
+                            }
 
-                                    <br><br>
-                                        <p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                            else if (visual == 2) {
+                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
+                                                <br>Hold for a count of 4
+                                                <br>Exhale for a count of 4 through your mouth.</p>
+                                                <audio class="w-100" controls>
+                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
+                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
+                                                    Your browser does not support the audio tag.
+                                                </audio>`;
+                            }
 
-                                        <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                        <br>Hold for a count of 4
-                                        <br>Exhale for a count of 4 through your mouth.</p>
-                                        <audio class="w-50" controls>
-                                            <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                            <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                            Your browser does not support the audio tag.
-                                        </audio>
+                            else {
+                                rows += `<div class="col-12 text-center">
+                                                    <img class="img-fluid" src="resources/results/med/imgs/8.jpg">
+                                                </div>`;
+                            }
 
-                                    <br><br>
-                                    If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                    <div class="text-center">
-                                        <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                    </div>
-                                    </div>`;
+
+                            rows += `<br><br><br>
+                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
+                                            <div class="text-center">
+                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
+                                            </div>
+                                            </div>`;
                         }
 
                         else {
-                            let random = Math.floor(Math.random() * 6) + 1;
-                            let random1 = Math.floor(Math.random() * 2) + 1;
                             rows += `<div class="alert alert-success" role="alert">
                                     <h4> Result: ${percentage}% </h4> Low Stress
                                     </div>
                                     
                                     <div>
                                         <div class="row">
-                                            <div class="col-lg-6 col-xl-4">
-                                                <img class="w-100" height="600px" src="resources/results/low/imgs/${random1}.jpg">
-                                            </div>
-
-                                            <div class="col-lg-6 col-xl-8">
+                                            <div class="col-12">
                                                 Based on your answer in the survey questionnaire, you have a low level of stress.
 
                                                 <br><br>Ways on how to relieve Low level of Stress:
@@ -470,32 +495,43 @@ function results(id, date) {
                                                 such as heart disease, anxiety disorders, and depression.
                                             </div>
                                         </div>
-                                    <br><br>
+                                    <br><br>`;
 
-                                    <video class="w-100" controls>
-                                        <source src="resources/results/low/videos/${random}.mp4" type="video/mp4">
-                                        <source src="resources/results/low/videos/${random + 1}.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                    <br><br>
+                            if (visual == 1) {
+                                let random = Math.floor(Math.random() * 6) + 1;
+                                rows += `<video class="w-100" controls>
+                                            <source src="resources/results/low/videos/${random}.mp4" type="video/mp4">
+                                            <source src="resources/results/low/videos/${random + 1}.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>`;
+                            }
 
-                                    <p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                            else if (visual == 2) {
+                                let random1 = Math.floor(Math.random() * 2) + 1;
+                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
+                                                <br>Hold for a count of 4
+                                                <br>Exhale for a count of 4 through your mouth.</p>
+                                                <audio class="w-100" controls>
+                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
+                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
+                                                    Your browser does not support the audio tag.
+                                                </audio>`;
+                            }
 
-                                        <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                        <br>Hold for a count of 4
-                                        <br>Exhale for a count of 4 through your mouth.</p>
-                                        <audio class="w-50" controls>
-                                            <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                            <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                            Your browser does not support the audio tag.
-                                        </audio>
-                                    
-                                    <br><br>
-                                    If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                    <div class="text-center">
-                                        <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                    </div>
-                                    </div>`;
+                            else {
+                                let random1 = Math.floor(Math.random() * 2) + 1;
+                                rows += `<div class="col-12 text-center">
+                                            <img class="img-fluid" src="resources/results/low/imgs/${random1}.jpg">
+                                        </div>`;
+                            }
+
+                            rows += `<br><br><br>
+                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
+                                            <div class="text-center">
+                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
+                                            </div>
+                                            </div>`;
                         }
 
 
@@ -503,7 +539,7 @@ function results(id, date) {
                 }
 
                 rows += `</div> </div>`;
-                $('.modal-body').html(rows);
+                $('.modal-body .container').html(rows);
             }
         }
 

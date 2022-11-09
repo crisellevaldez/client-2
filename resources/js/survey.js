@@ -69,33 +69,33 @@ $(document).ready(function () {
                         <div class="m-2 d-inline">
                             <input class="form-check-input" type="radio" name="question-${question.id}" value="5" required/>
                             <label class="form-check-label" for="radioExample1">
-                                Very Dissatisfied (5)
+                                Very Dissatisfied
                             </label>
                         </div>
                         <div class="m-2 d-inline">
                             <input class="form-check-input" type="radio" name="question-${question.id}" value="4" />
                             <label class="form-check-label" for="radioExample2">
-                                Dissatisfied (4)
+                                Dissatisfied
                             </label>
                         </div>
                         <div class="m-2 d-inline">
                             <input class="form-check-input" type="radio" name="question-${question.id}" value="3"  />
                             <label class="form-check-label" for="radioExample3">
-                                Neutral (3)
+                                Neutral
                             </label>
                         </div>
 
                         <div class="m-2 d-inline">
                             <input class="form-check-input" type="radio" name="question-${question.id}" value="2"  />
                             <label class="form-check-label" for="radioExample3">
-                                Satisfied (2)
+                                Satisfied
                             </label>
                         </div>
 
                         <div class="m-2 d-inline">
                             <input class="form-check-input" type="radio" name="question-${question.id}" value="1"  />
                             <label class="form-check-label" for="radioExample3">
-                                Very Satisfied (1)
+                                Very Satisfied
                             </label>
                         </div>
                         

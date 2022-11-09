@@ -29,8 +29,8 @@ if (isset($_SESSION['id'])) {
 <body>
     <?php include 'includes/nav.php' ?>
 
-    <section id="services" class="services section-bg mt-5">
-        <div class="container" data-aos="fade-up">
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up" style="margin-top: 120px">
 
             <div class="section-title">
                 <h2>Results</h2>

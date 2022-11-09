@@ -43,6 +43,7 @@ $(document).ready(function () {
                     let total = 5 * data[1][0];
                     let result = data[0][0].result / total;
                     let percentage = result * 100;
+                    percentage = Math.round(percentage)
 
                     if (percentage == 0) {
                         $('.services').remove();
@@ -121,7 +122,7 @@ $(document).ready(function () {
                                         <div>
                                         You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
 
-                                        <br><br>Ways on how to relieve Mediuum level of stress:
+                                        <br><br>Ways on how to relieve Medium level of stress:
                                         <br>1. Being physically active
                                         <br>2. Trying to get a good night’s sleep
                                         <br>3. Being creative
