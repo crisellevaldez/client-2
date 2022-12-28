@@ -16,15 +16,15 @@ $(document).ready(function () {
     });
 
     $.ajax({
-        url: "resources/api/all-questions.php",
+        url: "resources/api/all-survey.php",
         method: "GET",
         success: function (res) {
             let data = JSON.parse(res);
             let rows = ``;
 
-            rows += `<option value=""> Select Question </option>`;
+            rows += `<option value=""> Select Survey </option>`;
             for (let question of data) {
-                rows += `<option value="${question.id}">${question.question}</option>`;
+                rows += `<option value="${question.id}">${question.title}</option>`;
             }
             $('select').html(rows);
         }

@@ -1,15 +1,13 @@
 <?php
-  session_start();
-  if(isset($_SESSION['id'])){
+session_start();
+if (isset($_SESSION['id'])) {
 
-    if($_SESSION['type'] == 2){
+    if ($_SESSION['type'] == 2) {
         header('location: dashboard.php');
     }
-  }
-
-  else {
+} else {
     header('location: sign-in.php');
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +16,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    
+
     <title>Admin</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -36,7 +34,7 @@
 
             <div class="section-title">
                 <h2>ADMIN DASHBOARD</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                <p></p>
             </div>
 
             <div class="row">
@@ -100,13 +98,13 @@
 
                 <div class="row mt-5">
                     <div class="col-lg-6 ">
-                            <label> Select a Question to view Chart: </label>
-                            <select id="survey" class="form-select form-select-lg mt-2">
-                                
-                            </select>
+                        <label> Select a Survey to view Chart: </label>
+                        <select id="survey" class="form-select form-select-lg mt-2">
 
-                            <div id="insert-canva">
-                            </div>
+                        </select>
+
+                        <div id="insert-canva">
+                        </div>
                     </div>
                 </div>
 

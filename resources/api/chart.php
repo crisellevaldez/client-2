@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode($array);
     } else {
 
-        $question_id = $_GET['id'];
-        $sql = 'SELECT * FROM answers WHERE question_id=:question_id';
+        $survey_id = $_GET['id'];
+        $sql = 'SELECT * FROM answers WHERE survey_id=:survey_id';
         $stmt = $conn->prepare($sql);
 
-        $stmt->bindParam(':question_id', $question_id, PDO::PARAM_INT);
+        $stmt->bindParam(':survey_id', $survey_id, PDO::PARAM_INT);
         $stmt->execute();
         $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
