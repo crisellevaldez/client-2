@@ -43,7 +43,11 @@ if (isset($_SESSION['id'])) {
                     <div class="col-lg-6 ">
                         <label> Select a Survey to view Chart: </label>
                         <select id="survey" class="form-select form-select-lg mt-2">
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
                         </select>
                     </div>
                 </div>
@@ -55,7 +59,6 @@ if (isset($_SESSION['id'])) {
                 </div>
 
                 <div class="col-12 gathered-table">
-
                 </div>
             </div>
 

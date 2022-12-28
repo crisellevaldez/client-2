@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 function calculate(data) {
+=======
+function calculate(data){
+>>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
     let msg = "";
     if (data >= 66) {
         msg = "High Stress";
@@ -17,6 +21,7 @@ function calculate(data) {
 
 $(document).ready(function () {
 
+<<<<<<< HEAD
     $("button").click(function () {
         let date = new Date().toLocaleString();
         date = date.replaceAll("/", "-").replaceAll(":", "-");
@@ -30,6 +35,21 @@ $(document).ready(function () {
             exclude_inputs: true
         });
     });
+=======
+    $("button").click(function(){
+        let date = new Date().toLocaleString();
+        date = date.replaceAll("/", "-").replaceAll(":","-");
+        let fileName = "gathered-data ("+date.replaceAll("/", "-")+")";
+        $("table").table2excel({
+            name:"Gathered Data",
+            filename: fileName,//do not include extension
+            fileext:".xls", // file extension
+            exclude_img: true,
+            exclude_links: true,
+            exclude_inputs: true
+          });
+        });
+>>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
 
     $.ajax({
         url: "resources/api/survey-sets.php",
@@ -47,7 +67,11 @@ $(document).ready(function () {
     });
 
     $('#survey').on('change', function (e) {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
         $.ajax({
             url: "resources/api/gathered-data.php",
             method: "GET",
@@ -56,7 +80,11 @@ $(document).ready(function () {
             },
             success: function (res) {
 
+<<<<<<< HEAD
                 if (res == 0) {
+=======
+                if (res == 0){
+>>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
                     $('.gathered-table').html(`<h5 class=""> No Data </h5>`);
                 }
 
@@ -68,6 +96,7 @@ $(document).ready(function () {
                                             <tr>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Gender</th>
+<<<<<<< HEAD
                                                 <th scope="col">Survey Title</th>
                                                 <th scope="col">Date and Time</th>`;;
 
@@ -75,11 +104,25 @@ $(document).ready(function () {
                     let rows1 = "";
                     for (let datum of data) {
                         if (date1 == datum.date_created) {
+=======
+                                                <th scope="col">Age</th>
+                                                <th scope="col">Survey Title</th>
+                                                <th scope="col">Date and Time</th>`;;
+                        
+                    let id = 0, date = 0, date1 = 0, result = 0, count = 0, c = 1;
+                    let rows1 = "";
+                    for (let datum of data){
+                        if (date1 == datum.date_created){
+>>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
                             rows += `<th scope="col">${datum.question}</th>`;
                         }
 
                         else {
+<<<<<<< HEAD
                             if (date1 == 0) {
+=======
+                            if (date1 == 0){
+>>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
                                 rows += `<th scope="col">${datum.question}</th>`;
                                 date1 = datum.date_created;
                             }
@@ -162,7 +205,6 @@ $(document).ready(function () {
         });
 
     });
-
     /*$.ajax({
         url: "resources/api/result-survey.php?survey-id=" + surveyId,
         method: "GET",
