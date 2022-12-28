@@ -1,11 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
-
-    if ($_SESSION['type'] == 1) {
-        header('location: admin.php');
-    }
-} else {
+if (!isset($_SESSION['alias'])) {
     header('location: sign-in.php');
 }
 ?>
@@ -21,7 +16,7 @@ if (isset($_SESSION['id'])) {
     <meta content="" name="description">
     <meta content="" name="keywords">
     <?php include 'includes/sources.html' ?>
-    <script src="resources/js/result-survey.js"> </script>
+    <script src="resources/js/result-survey-guest.js"> </script>
     <script src="resources/js/sign-out.js"> </script>
 </head>
 
@@ -32,15 +27,12 @@ if (isset($_SESSION['id'])) {
         <div class="container" data-aos="fade-up" style="margin-top: 120px">
 
             <div class="section-title">
-                <h2>Result - History </h2>
-                <p> Below are the history of your answers based on the selected survey.</p>
+                <h2>Result </h2>
             </div>
 
             <div class="row">
                 <div class="col-12">
-                    <button type="button" class="btn btn-success float-end mb-3" data-bs-toggle="modal" data-bs-target="#modal" onclick="overAllResult()">
-                        Overall Result
-                    </button>
+
                     <table class="table bg-light table-bordered">
                         <thead>
                             <tr>

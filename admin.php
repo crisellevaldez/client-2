@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="row">
                     <div class="col-12 mb-3 d-flex justify-content-center">
-                        <a href="questionnaires.php" class="btn btn-custom m-1"> Manage Survey Questionnaire </a>
+                        <!-- <a href="questionnaires.php" class="btn btn-custom m-1"> Manage Survey Questionnaire </a> -->
                         <a href="gathered-data.php" class="btn btn-custom m-1"> Gathered Data </a>
                     </div>
 

@@ -1,14 +1,18 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) || isset($_SESSION['alias'])) {
+    if (isset($_SESSION['type'])){
+        if ($_SESSION['type'] == 2) {
+            header('location: dashboard.php');
+        } else {
+            header('location: admin.php');
+        }
+    }
 
-    if ($_SESSION['type'] == 2) {
+    else {
         header('location: dashboard.php');
-    } else {
-        header('location: admin.php');
     }
 }
-
 ?>
 
 <!DOCTYPE html>

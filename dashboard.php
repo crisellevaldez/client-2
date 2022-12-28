@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
-
-    if ($_SESSION['type'] == 1) {
-        header('location: admin.php');
+if (isset($_SESSION['id']) || isset($_SESSION['alias'])) {
+    if (isset($_SESSION['type'])){
+        if ($_SESSION['type'] == 1) {
+            header('location: admin.php');
+        }
     }
 } else {
     header('location: sign-in.php');
@@ -42,9 +43,11 @@ if (isset($_SESSION['id'])) {
                     </p>
                 </div>
 
-                <div class="col-12 mb-3 d-flex justify-content-center">
-                    <a href="results.php" class="btn btn-custom m-1"> See All Results </a>
-                </div>
+                <?php if (isset($_SESSION['id'])) { ?>
+                    <div class="col-12 mb-3 d-flex justify-content-center">
+                        <a href="results.php" class="btn btn-custom m-1"> See All Results </a>
+                    </div> 
+                <?php } ?>
 
                 <div class="col-lg-12 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 

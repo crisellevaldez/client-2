@@ -9,7 +9,7 @@ function GetURLParameter(sParam) {
     }
 }
 
-function updateQuestion(id){
+/*function updateQuestion(id){
     let question = $('#q-'+id).val();
 
     if (question == "" || question == null){
@@ -137,7 +137,7 @@ function deleteQuestion(id){
             });
         }
       })
-}
+}*/
 
 $(document).ready(function () {
 
@@ -160,7 +160,7 @@ $(document).ready(function () {
                             <div class="mb-3 col-md-6">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Survey Title</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control" name="surveyTitle" value="${questions[0].title}" id="inputPassword">
+                                <input type="text" class="form-control" name="surveyTitle" value="${questions[0].title}" id="inputPassword" readonly>
                                 `;
 
                                 if (data[1].length == 0){
@@ -169,16 +169,17 @@ $(document).ready(function () {
                                     </button>`;
                                 }
                                 
+                                /*
                                 if (data[1].length == 0){
                                     rows += `<button type="button" class="btn btn-danger float-top mt-3" style="margin-left: 5px" onclick="deleteSurvey()">
                                         Delete this survey
                                     </button>`;
-                                }
+                                }*/
                                 rows += `</div></div>
                                     <div class="mb-3 col-md-6">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                                         <div class="col-sm-10">
-                                        <input type="text" class="form-control"  name="surveyDesc" value="${questions[0].description}" id="inputPassword">
+                                        <input type="text" class="form-control"  name="surveyDesc" value="${questions[0].description}" id="inputPassword" readonly>
                                         </div>
                                     </div>
                                     
@@ -187,7 +188,6 @@ $(document).ready(function () {
                                             <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Question</th>
-                                            <th scope="col">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>`;
@@ -197,16 +197,16 @@ $(document).ready(function () {
                     for (let question of questions) {
                         rows += `<tr>
                                     <th scope="row">${count}</th>
-                                    <td class="w-75"> <textarea class="form-control" id="q-${question.id}">${question.question}</textarea> </td>
-                                    <td> <button type="button" class="btn btn-primary" onclick="updateQuestion(${question.id})">Update</button>`;
+                                    <td class="w-75"> <textarea readonly class="form-control" id="q-${question.id}">${question.question}</textarea> </td>`;
+                                    /*
+                                    <td> <button type="button" class="btn btn-primary" onclick="updateQuestion(${question.id})">Update</button> 
                                     if (data[1].length == 0){
                                         rows += `<button type="button" class="btn btn-danger" style="margin-left: 5px" onclick="deleteQuestion(${question.id})">Delete</button>`;
-                                    }
+                                    }*/
                                     rows += `</td></tr>`;
                         count++;
                     }
                 }
-               
                 
                 rows += `</tbody> </table>`;
                 $('.row').html(rows);
@@ -215,6 +215,7 @@ $(document).ready(function () {
         }
     });
 
+    /*
     $('#survey').on('submit', function (e) {
         console.log('1')
         e.preventDefault();
@@ -263,7 +264,9 @@ $(document).ready(function () {
                 required: "Please enter the survey description."
             }
         }
-    });
+    }); 
+
+    */
 
     $('#add').on('submit', function (e) {
         console.log(1)
@@ -311,6 +314,5 @@ $(document).ready(function () {
             }
         }
     });
-
 
 })

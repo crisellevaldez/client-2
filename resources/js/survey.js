@@ -141,6 +141,17 @@ $(document).ready(function () {
 
                         setTimeout(function(){location.href = `result-survey.php?survey-id=${surveyId}`}, 1500);
                     }
+
+                    else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        setTimeout(function(){location.href = `result-survey-guest.php?survey-id=${surveyId}`}, 1500);
+                    }
                 }
             });
         }

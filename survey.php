@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
-
-    if ($_SESSION['type'] == 1) {
-        header('location: admin.php');
+if (isset($_SESSION['id']) || isset($_SESSION['alias'])) {
+    if (isset($_SESSION['type'])){
+        if ($_SESSION['type'] == 1) {
+            header('location: admin.php');
+        }
     }
 } else {
     header('location: sign-in.php');

@@ -46,9 +46,9 @@ if (isset($_SESSION['id'])) {
             
                 <form id="survey">
                     <div class="row pt-5 px-5"></div>
-
+                    <!--
                     <button type="submit" id="btn-submit" class="btn btn-custom w-25 p-2 float-end">Save Changes</button>
-                    </br>
+                    </br> -->
                     </br>
                 </form>
             </div>

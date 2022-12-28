@@ -1,41 +1,39 @@
 function activate(email) {
-    $('.modal').modal('show');
+    $('#sign-in').modal('show');
     $('#sign-in-confirm').prepend(`<input type="hidden" name="email" value="${email}">`)
 }
 
-function signIn() {
-    Swal.fire({
-        title: '',
-        html: `<b> Republic Act 10173 – Data Privacy Act of 2012 seeks to protect all forms of information, 
-        be it private, personal, or sensitive. It is meant to cover both natural and juridical persons involved 
-        in the processing of personal information. </b> <br> <br> The aim of this survey is to assist the School Management 
-        Team to identify the main areas and causes of potential stress at work so that any risks to your health,
-        safety and wellbeing can be reduced. but please be assured that any information you do provide 
-        will be treated confidentially.`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Proceed',
-        width: '800px'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            location.href = "dashboard.php";
-        }
-
-        else {
-            $.ajax({
-                url: "resources/api/sign-out.php",
-                method: "GET",
-                success: function (res) {
-                    location.href= "sign-in.php";
-                }
-            })
-        }
-    })
-}
-
 $(document).ready(function () {
+
+    $('#sign-in-guest').on('submit', function (e) {
+        e.preventDefault();
+
+        if ($(this).valid()) {
+            let data = new FormData(this);
+            $.ajax({
+                url: "resources/api/sign-in-alias.php",
+                method: "POST",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    if (res == 1) {
+                        location.href = "dashboard.php";
+                    }
+                }
+            });
+        }
+
+    }).validate({
+        rules: {
+            alias: {
+                required: true
+            }
+        },
+        messages: {
+            alias: "Please enter your alias."
+        }
+    });
 
     $('#sign-in').on('submit', function (e) {
         e.preventDefault();
@@ -50,7 +48,7 @@ $(document).ready(function () {
                 processData: false,
                 success: function (res) {
                     if (res == 1) {
-                        signIn();
+                        location.href = "dashboard.php";
                     }
 
                     else if (res == 2) {
@@ -85,7 +83,7 @@ $(document).ready(function () {
             password: "Please enter your password."
         }
     });
-
+    
     $('#sign-in-confirm').on('submit', function (e) {
         e.preventDefault();
 

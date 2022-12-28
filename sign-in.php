@@ -1,15 +1,19 @@
 <?php
-  session_start();
-  if(isset($_SESSION['id'])){
-
-    if($_SESSION['type'] == 2){
-        header('location: dashboard.php');
+session_start();
+if (isset($_SESSION['id']) || isset($_SESSION['alias'])) {
+    if (isset($_SESSION['type'])){
+        if ($_SESSION['type'] == 2) {
+            header('location: dashboard.php');
+        } else {
+            header('location: admin.php');
+        }
     }
 
     else {
-        header('location: admin.php');
+        header('location: dashboard.php');
     }
-  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -61,10 +65,14 @@
                                 </div>
                             </div>
                             <div class="text-center"><button type="submit">Sign In</button></div>
-                            
+
                             <div class="form-group float-end">
                                 <label for="name"> No account?</label>
-                                <a href="sign-up.php"> Sign Up </a>
+                                <a href="sign-up.php"> Sign Up </a> <br>
+                                or <button type="button" style="border: none; background: none repeat scroll 0 0 transparent;" data-bs-toggle="modal" data-bs-target="#alias">
+                                    <a href="#"> Sign In </a> <br>
+                                </button>
+                                as Guest
                             </div>
                         </form>
                     </div>
@@ -75,7 +83,7 @@
         </section><!-- End Contact Section -->
     </div>
 
-    <div class="modal" tabindex="-1">
+    <div class="modal" id="sign-in" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -90,6 +98,27 @@
                             <input type="text" class="form-control" name="code">
                         </div>
                         <div class="text-center float-end mt-2"><button class="btn btn-custom-1" type="submit">Activate</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="alias" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign In as Guest</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="sign-in-guest">
+                        <p>To access the full features of the system, enter your alias:</p>
+                        <div class="form-group col-md-12">
+                            <label for="name">Alias/Nickname:</label>
+                            <input type="text" class="form-control" name="alias">
+                        </div>
+                        <div class="text-center float-end mt-2"><button class="btn btn-custom-1" type="submit">Sign In</button></div>
                     </form>
                 </div>
             </div>
