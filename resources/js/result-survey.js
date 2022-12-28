@@ -9,6 +9,106 @@ function GetURLParameter(sParam) {
     }
 }
 
+/* NEW FUNCTIONS */
+const selectVisual = (...data) => {
+    $('#choose').attr('disabled', true)
+    const [status, id] = data;
+
+    $.ajax({
+        url: "resources/api/get-visuals.php?survey-id=" + id + "&status=" + status,
+        method: "GET",
+        success: function (res) {
+            const data = JSON.parse(res)
+            let table = `<table class="table mt-2">
+                            <thead>
+                                <tr>
+                                    <th scope="col">File Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>`
+
+            for (let file of data){
+                let fileType = file.filename.split('.')
+                let filePath = file.path.split('results')[1]
+                let newFilePath = filePath.replaceAll("\\", "\\\\");
+                table += `<tr>
+                            <th scope="row">${file.filename}</th>
+                            <td> <button class="btn btn-primary" id="select" onClick='chooseVisual("${fileType[1]}", "${newFilePath}")'> Select </button> </td>
+                        </tr>`
+            }
+
+            table += `</tbody>
+                        </table>`
+
+            $('#choose').after(table)
+        }
+    })
+}
+
+const chooseVisual = (type, path) => {
+    
+    let visual = ''
+
+    switch(type){
+        case "mp4":
+            visual += `<video class="w-100" controls>
+                <source src="resources/results${path}" type="video/mp4">
+                <source src="resources/results${path}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>`
+            break
+        case "mp3":
+            visual += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
+                    <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
+                    <br>Hold for a count of 4
+                    <br>Exhale for a count of 4 through your mouth.</p>
+                    <audio class="w-100" controls>
+                        <source src="resources/results${path}" type="video/mp4">
+                        <source src="resources/results${path}" type="video/mp4">
+                        Your browser does not support the audio tag.
+                    </audio>`
+            break
+        case "jpg":
+            visual += `<div class="col-12 text-center">
+                        <img class="img-fluid" src="resources/results${path}">
+                    </div>`
+            break
+    }
+
+    $('#visual').html(visual)
+}
+
+const fillResults = (...data) => {
+    const [percentage, htmlData, alert, status, num, surveyId] = data;
+    let rows = `<div class="alert alert-${alert}" role="alert">
+            <h4> Result: ${percentage}% </h4> ${status}
+            </div>
+            
+            <div>
+
+                <div class="row">
+                    <div class="col-12">
+                        ${htmlData} <br> <br>
+                        <button class="btn btn-primary" id="choose" onClick='selectVisual(${num}, ${surveyId})'> Choose your visual </button>
+                    </div>
+
+                    <div class="col-12" id="visual">
+                    </div>
+                </div>`
+
+    rows += `<br><br>
+                If you are looking for someone to reach out to or talk to please don't be shy and call us!
+                <div class="text-center">
+                    <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
+                </div>
+            </div>`
+
+    return rows
+}
+
+//END
+
 function overAllResult() {
     let id = GetURLParameter('survey-id');
     $.ajax({
@@ -53,22 +153,11 @@ function overAllResult() {
                 }
 
                 else {
-                    for (let datum of data[0]) {
-                        let visual = Math.floor(Math.random() * 3) + 1;
-                        rows += `<div class="col-12" data-aos="zoom-in" data-aos-delay="100">
+                    rows += `<div class="col-12" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="icon-box">`;
 
-                        if (percentage >= 66) {
-                            rows += `<div class="alert alert-danger" role="alert">
-                                    <h4> Result: ${percentage}% </h4> High Stress
-                                    </div>
-                                    
-                                    <div>
-
-                                        <div class="row">
-
-                                            <div class="col-12">
-                                                If you’re coping with an extremely stressful situation, consider using the following techniques to manage and ease those feelings. 
+                    if (percentage >= 66) {
+                        let htmlData = `If you’re coping with an extremely stressful situation, consider using the following techniques to manage and ease those feelings. 
                                                 Deploying multiple stress management strategies can help you move forward in a more productive way.
                                                 <br><br>1. Start small 
                                                     stress often arises out of a feeling of inadequate control over a situation. By imposing some order or routine to your day, that may help you feel more in charge.
@@ -88,185 +177,60 @@ function overAllResult() {
                                                     <br>9. Talk to a professional.
                                                     <br>10. Reassess what’s most important.
                                                     <br>11. Keep the faith.
-                                        
+                    
                                                     <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
-                                                That’s because chronic stress harms health and increases your risk of health conditions 
-                                                such as heart disease, anxiety disorders, and depression.
-                                                “We’re all capable of moving through our current situation and coming out the other side.”
-                                            </div>
-                                        </div>
-                                        
-                                        <br>
-                                        <br>`;
+                                                    That’s because chronic stress harms health and increases your risk of health conditions 
+                                                    such as heart disease, anxiety disorders, and depression.
+                                                    “We’re all capable of moving through our current situation and coming out the other side.”`
 
-                            if (visual == 1) {
-                                let random = Math.floor(Math.random() * 5) + 1;
-                                rows += `<video class="w-100" controls>
-                                                        <source src="resources/results/high/videos/${random}.mp4" type="video/mp4">
-                                                        <source src="resources/results/high/videos/${random + 1}.mp4" type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>`;
-                            }
+                        url: "resources/api/results-guest.php?survey-id=" + id,
+                            rows += fillResults(percentage, htmlData, 'danger', 'High Stress', 1, id)
 
-                            else if (visual == 2) {
-                                let random = Math.floor(Math.random() * 5) + 1;
-                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
-                                                    <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                                    <br>Hold for a count of 4
-                                                    <br>Exhale for a count of 4 through your mouth.</p>
-                                                    <audio class="w-100" controls>
-                                                        <source src="resources/results/high/musics/${random}.mp3" type="video/mp4">
-                                                        <source src="resources/results/high/musics/${random + 1}.mp3" type="video/mp4">
-                                                        Your browser does not support the audio tag.
-                                                    </audio>`;
-                            }
-
-                            else {
-                                let random1 = Math.floor(Math.random() * 3) + 1;
-                                rows += `<div class="col-12 text-center">
-                                                <img class="img-fluid" src="resources/results/high/imgs/${random1}.jpg">
-                                            </div>`;
-                            }
-
-                            rows += `<br><br><br>
-                                        If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                        <div class="text-center">
-                                            <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                        </div>
-                                    </div>`;
-                        }
-
-                        else if (percentage >= 33) {
-                            rows += `<div class="alert alert-warning" role="alert">
-                                    <h4> Result: ${percentage}% </h4> Medium Stress
-                                    </div>
-                                    
-                                    <div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
-
-                                            <br><br>Ways on how to relieve Medium level of stress:
-                                            <br>1. Being physically active
-                                            <br>2. Trying to get a good night’s sleep
-                                            <br>3. Being creative
-                                            <br>4. Staying connected to your family and friends and asking for support if you need to.
-                                            <br>5. Practice Mindfulness
-                                            
-                                            <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
-                                            That’s because chronic stress harms health and increases your risk of health conditions 
-                                            such as heart disease, anxiety disorders, and depression.
-                                        </div>
-                                    </div>
-                                    <br><br>`;
-
-                            if (visual == 1) {
-                                let random = Math.floor(Math.random() * 7) + 1;
-                                rows += `<video class="w-100" controls>
-                                                    <source src="resources/results/med/videos/${random}.mp4" type="video/mp4">
-                                                    <source src="resources/results/med/videos/${random + 1}.mp4" type="video/mp4">
-                                                    Your browser does not support the video tag.
-                                                </video>`;
-                            }
-
-                            else if (visual == 2) {
-                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
-                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                                <br>Hold for a count of 4
-                                                <br>Exhale for a count of 4 through your mouth.</p>
-                                                <audio class="w-100" controls>
-                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                                    Your browser does not support the audio tag.
-                                                </audio>`;
-                            }
-
-                            else {
-                                rows += `<div class="col-12 text-center">
-                                                    <img class="img-fluid" src="resources/results/med/imgs/8.jpg">
-                                                </div>`;
-                            }
-
-
-                            rows += `<br><br><br>
-                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                            <div class="text-center">
-                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                            </div>
-                                            </div>`;
-                        }
-
-                        else {
-                            rows += `<div class="alert alert-success" role="alert">
-                                    <h4> Result: ${percentage}% </h4> Low Stress
-                                    </div>
-                                    
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                Based on your answer in the survey questionnaire, you have a low level of stress.
-
-                                                <br><br>Ways on how to relieve Low level of Stress:
-                                                <br>1. Get more physical activity
-                                                <br>2. Follow a healthy diet
-                                                <br>3. Minimize phone use and screen time
-                                                <br>4. Consider supplements (Several vitamins and minerals play an important role in your body’s stress response and mood regulation.)
-                                                <br>5. Practice self-care
-                                                <br>6. Reduce your caffeine intake 
-                                                <br>7. Spend time with friends and family
-                                                <br>8. Create bounderies
-                                                <br>9. Learn to avoid procastination
-                                                <br>10. Take a yoga class
-                                                <br>11. Practice mindfulness
-                                                <br>12. Cuddle
-                                                <br>13. Spend time in nature
-                                                <br>14. Practice deep breathing 
-                                                <br>15. Play with your pets
-                                                
-                                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
-                                                That’s because chronic stress harms health and increases your risk of health conditions 
-                                                such as heart disease, anxiety disorders, and depression.
-                                            </div>
-                                        </div>
-                                    <br><br>`;
-
-                            if (visual == 1) {
-                                let random = Math.floor(Math.random() * 6) + 1;
-                                rows += `<video class="w-100" controls>
-                                            <source src="resources/results/low/videos/${random}.mp4" type="video/mp4">
-                                            <source src="resources/results/low/videos/${random + 1}.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>`;
-                            }
-
-                            else if (visual == 2) {
-                                let random1 = Math.floor(Math.random() * 2) + 1;
-                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
-                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                                <br>Hold for a count of 4
-                                                <br>Exhale for a count of 4 through your mouth.</p>
-                                                <audio class="w-100" controls>
-                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                                    Your browser does not support the audio tag.
-                                                </audio>`;
-                            }
-
-                            else {
-                                let random1 = Math.floor(Math.random() * 2) + 1;
-                                rows += `<div class="col-12 text-center">
-                                            <img class="img-fluid" src="resources/results/low/imgs/${random1}.jpg">
-                                        </div>`;
-                            }
-
-                            rows += `<br><br><br>
-                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                            <div class="text-center">
-                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                            </div>
-                                            </div>`;
-                        }
                     }
+
+                    else if (percentage >= 33) {
+                        let htmlData = `You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
+                                <br><br>Ways on how to relieve Medium level of stress:
+                                <br>1. Being physically active
+                                <br>2. Trying to get a good night’s sleep
+                                <br>3. Being creative
+                                <br>4. Staying connected to your family and friends and asking for support if you need to.
+                                <br>5. Practice Mindfulness
+                                
+                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
+                                That’s because chronic stress harms health and increases your risk of health conditions 
+                                such as heart disease, anxiety disorders, and depression.`
+
+                        rows += fillResults(percentage, htmlData, 'warning', 'Medium Stress', 2, id)
+                    }
+
+                    else {
+                        let htmlData = `Based on your answer in the survey questionnaire, you have a low level of stress.
+                                    <br><br>Ways on how to relieve Low level of Stress:
+                                    <br>1. Get more physical activity
+                                    <br>2. Follow a healthy diet
+                                    <br>3. Minimize phone use and screen time
+                                    <br>4. Consider supplements (Several vitamins and minerals play an important role in your body’s stress response and mood regulation.)
+                                    <br>5. Practice self-care
+                                    <br>6. Reduce your caffeine intake 
+                                    <br>7. Spend time with friends and family
+                                    <br>8. Create bounderies
+                                    <br>9. Learn to avoid procastination
+                                    <br>10. Take a yoga class
+
+                                    <br>11. Practice mindfulness
+                                    <br>12. Cuddle
+                                    <br>13. Spend time in nature
+                                    <br>14. Practice deep breathing 
+                                    <br>15. Play with your pets
+                                    
+                                    <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
+                                    That’s because chronic stress harms health and increases your risk of health conditions 
+                                    such as heart disease, anxiety disorders, and depression.`
+
+                        rows += fillResults(percentage, htmlData, 'success', 'Low Stress', 3, id)
+                    }
+
                 }
 
                 rows += `</div> </div>`;
@@ -277,7 +241,7 @@ function overAllResult() {
     });
 }
 
-function results(id, date) {
+function results(id,date) {
     $.ajax({
         url: "resources/api/results.php?survey-id=" + id + "&date=" + date,
         method: "GET",
@@ -320,22 +284,11 @@ function results(id, date) {
                 }
 
                 else {
-                    for (let datum of data[0]) {
-                        let visual = Math.floor(Math.random() * 3) + 1;
-                        rows += `<div class="col-12" data-aos="zoom-in" data-aos-delay="100">
+                    rows += `<div class="col-12" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="icon-box">`;
 
-                        if (percentage >= 66) {
-                            rows += `<div class="alert alert-danger" role="alert">
-                                    <h4> Result: ${percentage}% </h4> High Stress
-                                    </div>
-                                    
-                                    <div>
-
-                                        <div class="row">
-
-                                            <div class="col-12">
-                                                If you’re coping with an extremely stressful situation, consider using the following techniques to manage and ease those feelings. 
+                    if (percentage >= 66) {
+                        let htmlData = `If you’re coping with an extremely stressful situation, consider using the following techniques to manage and ease those feelings. 
                                                 Deploying multiple stress management strategies can help you move forward in a more productive way.
                                                 <br><br>1. Start small 
                                                     stress often arises out of a feeling of inadequate control over a situation. By imposing some order or routine to your day, that may help you feel more in charge.
@@ -355,187 +308,61 @@ function results(id, date) {
                                                     <br>9. Talk to a professional.
                                                     <br>10. Reassess what’s most important.
                                                     <br>11. Keep the faith.
-                                        
+                    
                                                     <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
-                                                That’s because chronic stress harms health and increases your risk of health conditions 
-                                                such as heart disease, anxiety disorders, and depression.
-                                                “We’re all capable of moving through our current situation and coming out the other side.”
-                                            </div>
-                                        </div>
-                                        
-                                        <br>
-                                        <br>`;
+                                                    That’s because chronic stress harms health and increases your risk of health conditions 
+                                                    such as heart disease, anxiety disorders, and depression.
+                                                    “We’re all capable of moving through our current situation and coming out the other side.”`
 
-                            if (visual == 1) {
-                                let random = Math.floor(Math.random() * 5) + 1;
-                                rows += `<video class="w-100" controls>
-                                                        <source src="resources/results/high/videos/${random}.mp4" type="video/mp4">
-                                                        <source src="resources/results/high/videos/${random + 1}.mp4" type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>`;
-                            }
-
-                            else if (visual == 2) {
-                                let random = Math.floor(Math.random() * 5) + 1;
-                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
-                                                    <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                                    <br>Hold for a count of 4
-                                                    <br>Exhale for a count of 4 through your mouth.</p>
-                                                    <audio class="w-100" controls>
-                                                        <source src="resources/results/high/musics/${random}.mp3" type="video/mp4">
-                                                        <source src="resources/results/high/musics/${random + 1}.mp3" type="video/mp4">
-                                                        Your browser does not support the audio tag.
-                                                    </audio>`;
-                            }
-
-                            else {
-                                let random1 = Math.floor(Math.random() * 3) + 1;
-                                rows += `<div class="col-12 text-center">
-                                                <img class="img-fluid" src="resources/results/high/imgs/${random1}.jpg">
-                                            </div>`;
-                            }
-
-                            rows += `<br><br><br>
-                                        If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                        <div class="text-center">
-                                            <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                        </div>
-                                    </div>`;
-                        }
-
-                        else if (percentage >= 33) {
-                            rows += `<div class="alert alert-warning" role="alert">
-                                    <h4> Result: ${percentage}% </h4> Medium Stress
-                                    </div>
-                                    
-                                    <div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
-
-                                            <br><br>Ways on how to relieve Medium level of stress:
-                                            <br>1. Being physically active
-                                            <br>2. Trying to get a good night’s sleep
-                                            <br>3. Being creative
-                                            <br>4. Staying connected to your family and friends and asking for support if you need to.
-                                            <br>5. Practice Mindfulness
-                                            
-                                            <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
-                                            That’s because chronic stress harms health and increases your risk of health conditions 
-                                            such as heart disease, anxiety disorders, and depression.
-                                        </div>
-                                    </div>
-                                    <br><br>`;
-
-                            if (visual == 1) {
-                                let random = Math.floor(Math.random() * 7) + 1;
-                                rows += `<video class="w-100" controls>
-                                                    <source src="resources/results/med/videos/${random}.mp4" type="video/mp4">
-                                                    <source src="resources/results/med/videos/${random + 1}.mp4" type="video/mp4">
-                                                    Your browser does not support the video tag.
-                                                </video>`;
-                            }
-
-                            else if (visual == 2) {
-                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
-                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                                <br>Hold for a count of 4
-                                                <br>Exhale for a count of 4 through your mouth.</p>
-                                                <audio class="w-100" controls>
-                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                                    <source src="resources/results/med/musics/7.mp3" type="video/mp4">
-                                                    Your browser does not support the audio tag.
-                                                </audio>`;
-                            }
-
-                            else {
-                                rows += `<div class="col-12 text-center">
-                                                    <img class="img-fluid" src="resources/results/med/imgs/8.jpg">
-                                                </div>`;
-                            }
-
-
-                            rows += `<br><br><br>
-                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                            <div class="text-center">
-                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                            </div>
-                                            </div>`;
-                        }
-
-                        else {
-                            rows += `<div class="alert alert-success" role="alert">
-                                    <h4> Result: ${percentage}% </h4> Low Stress
-                                    </div>
-                                    
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                Based on your answer in the survey questionnaire, you have a low level of stress.
-
-                                                <br><br>Ways on how to relieve Low level of Stress:
-                                                <br>1. Get more physical activity
-                                                <br>2. Follow a healthy diet
-                                                <br>3. Minimize phone use and screen time
-                                                <br>4. Consider supplements (Several vitamins and minerals play an important role in your body’s stress response and mood regulation.)
-                                                <br>5. Practice self-care
-                                                <br>6. Reduce your caffeine intake 
-                                                <br>7. Spend time with friends and family
-                                                <br>8. Create bounderies
-                                                <br>9. Learn to avoid procastination
-                                                <br>10. Take a yoga class
-                                                <br>11. Practice mindfulness
-                                                <br>12. Cuddle
-                                                <br>13. Spend time in nature
-                                                <br>14. Practice deep breathing 
-                                                <br>15. Play with your pets
-                                                
-                                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
-                                                That’s because chronic stress harms health and increases your risk of health conditions 
-                                                such as heart disease, anxiety disorders, and depression.
-                                            </div>
-                                        </div>
-                                    <br><br>`;
-
-                            if (visual == 1) {
-                                let random = Math.floor(Math.random() * 6) + 1;
-                                rows += `<video class="w-100" controls>
-                                            <source src="resources/results/low/videos/${random}.mp4" type="video/mp4">
-                                            <source src="resources/results/low/videos/${random + 1}.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>`;
-                            }
-
-                            else if (visual == 2) {
-                                let random1 = Math.floor(Math.random() * 2) + 1;
-                                rows += `<p> Before you play the sound, close your eyes, and do this while you listen to the sound until its finished.
-                                                <br><br>Breathe in for a count of four through your nose in your own time at your own pace.
-                                                <br>Hold for a count of 4
-                                                <br>Exhale for a count of 4 through your mouth.</p>
-                                                <audio class="w-100" controls>
-                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                                    <source src="resources/results/low/musics/${random1}.mp3" type="video/mp4">
-                                                    Your browser does not support the audio tag.
-                                                </audio>`;
-                            }
-
-                            else {
-                                let random1 = Math.floor(Math.random() * 2) + 1;
-                                rows += `<div class="col-12 text-center">
-                                            <img class="img-fluid" src="resources/results/low/imgs/${random1}.jpg">
-                                        </div>`;
-                            }
-
-                            rows += `<br><br><br>
-                                            If you are looking for someone to reach out to or talk to please don't be shy and call us!
-                                            <div class="text-center">
-                                                <img src="resources/imgs/clinic.png" class="img-fluid" alt="Clinic">
-                                            </div>
-                                            </div>`;
-                        }
-
+                        url: "resources/api/results-guest.php?survey-id=" + id,
+                            rows += fillResults(percentage, htmlData, 'danger', 'High Stress', 1, id)
 
                     }
+
+                    else if (percentage >= 33) {
+                        let htmlData = `You're showing some signs of stress suggesting that you may be struggling to cope with the pressures you're currently under.
+                                <br><br>Ways on how to relieve Medium level of stress:
+                                <br>1. Being physically active
+                                <br>2. Trying to get a good night’s sleep
+                                <br>3. Being creative
+                                <br>4. Staying connected to your family and friends and asking for support if you need to.
+                                <br>5. Practice Mindfulness
+                                
+                                <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
+                                That’s because chronic stress harms health and increases your risk of health conditions 
+                                such as heart disease, anxiety disorders, and depression.`
+
+                        rows += fillResults(percentage, htmlData, 'warning', 'Medium Stress', 2, id)
+                    }
+
+                    else {
+                        let htmlData = `Based on your answer in the survey questionnaire, you have a low level of stress.
+                                    <br><br>Ways on how to relieve Low level of Stress:
+                                    <br>1. Get more physical activity
+                                    <br>2. Follow a healthy diet
+                                    <br>3. Minimize phone use and screen time
+                                    <br>4. Consider supplements (Several vitamins and minerals play an important role in your body’s stress response and mood regulation.)
+                                    <br>5. Practice self-care
+                                    <br>6. Reduce your caffeine intake 
+                                    <br>7. Spend time with friends and family
+                                    <br>8. Create bounderies
+                                    <br>9. Learn to avoid procastination
+                                    <br>10. Take a yoga class
+
+                                    <br>11. Practice mindfulness
+                                    <br>12. Cuddle
+                                    <br>13. Spend time in nature
+                                    <br>14. Practice deep breathing 
+                                    <br>15. Play with your pets
+                                    
+                                    <br><br>Minimizing the chronic stress of daily life as much as possible is important for overall health.
+                                    That’s because chronic stress harms health and increases your risk of health conditions 
+                                    such as heart disease, anxiety disorders, and depression.`
+
+                        rows += fillResults(percentage, htmlData, 'success', 'Low Stress', 3, id)
+                    }
+
+
                 }
 
                 rows += `</div> </div>`;
