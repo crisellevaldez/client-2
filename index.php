@@ -22,11 +22,11 @@ session_start();
   <section id="hero" class="d-flex align-items-center">
 
     <div class="container">
-      <div class="row">
+      <div class="row mt-5 mb-5">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1> St. Dominic de Guzman School, Inc. </h1>
-          <h2> VISION<br>
-            St. Dominic de Guzman School , established by ominican Sisters of St. Joseph, is an evangelizing arm of the Catholic Church. Insired by its patron, St. Dominic de Guzman and its devotion to the Holy Eucharist and the Blessed Virgin Mary, the institution transforms the needy youth to live in truth and proclaim the gospel through prayer, study and service to the Society.
+          <h1 style="font-size: 25px"> St. Dominic de Guzman School, Inc. </h1>
+          <h2 style="font-size: 20px"> VISION<br>
+            St. Dominic de Guzman School, established by dominican Sisters of St. Joseph, is an evangelizing arm of the Catholic Church. Insired by its patron, St. Dominic de Guzman and its devotion to the Holy Eucharist and the Blessed Virgin Mary, the institution transforms the needy youth to live in truth and proclaim the gospel through prayer, study and service to the Society.
             <br><br>
             MISSION<br>
             A center of excellence in Catholic Education foring holistic Dominican, Christ-inspired, competent lifelong learners and responsible citizens for meaningful life in the 21st Century. </h2>
@@ -41,7 +41,9 @@ session_start();
     </div>
   </section>
 
-
+  <script>
+      $('#home').addClass('active');
+  </script>
   <?php include 'includes/sources-2.html' ?>
 
 </body>

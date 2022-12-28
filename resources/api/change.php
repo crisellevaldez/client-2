@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Port       = 587;
         $mail->Host       = "smtp.gmail.com";
         $mail->Username   = "dummyemailforclient@gmail.com";
-        $mail->Password   = "ecyuufvbnwtkxqun";
+        $mail->Password   = "sqldlersrimrmmiw";
 
         $mail->IsHTML(true);
         $mail->AddAddress($email, $name);

@@ -72,6 +72,11 @@ $(document).ready(function () {
                 required: true
             },
 
+            age: {
+                required: true,
+                number: true
+            },
+
             password: {
                 required: true,
                 minlength: 5
@@ -113,6 +118,11 @@ $(document).ready(function () {
 
             gender: {
                 required: "Please select your gender.",
+            },
+
+            age: {
+                required: "Please enter your age.",
+                number: "Please a valid age.",
             },
 
             email: {

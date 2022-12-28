@@ -28,7 +28,7 @@ if (isset($_SESSION['id'])) {
 <body>
     <?php include 'includes/nav.php' ?>
 
-    <main id="main">
+    <main id="main" style="margin-top: 100px">
 
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">

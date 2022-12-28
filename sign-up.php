@@ -1,15 +1,13 @@
 <?php
-  session_start();
-  if(isset($_SESSION['id'])){
+session_start();
+if (isset($_SESSION['id'])) {
 
-    if($_SESSION['type'] == 2){
+    if ($_SESSION['type'] == 2) {
         header('location: dashboard.php');
-    }
-
-    else {
+    } else {
         header('location: admin.php');
     }
-  }
+}
 
 ?>
 
@@ -31,7 +29,7 @@
     <?php include 'includes/nav.php' ?>
 
     <!-- ======= Contact Section ======= -->
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 100px">
         <section id="" class="contact mt-5">
             <div class="container" data-aos="fade-up">
 
@@ -78,21 +76,27 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-8">
-                                    <label for="name">Your Email</label>
+
+                                <div class="form-group col-md-4">
+                                    <label for="name">Age</label>
+                                    <input type="number" class="form-control" name="age" id="age" required="">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="name">Email</label>
                                     <input type="email" class="form-control" name="email" id="email" required="">
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" name="password" id="password" >
+                                    <input type="password" class="form-control" name="password" id="password">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="name">Confirm Password</label>
                                     <input type="password" class="form-control" name="cPassword" required="">
                                 </div>
                             </div>
-                            
+
                             <div class="text-center"><button id="btn-submit" type="submit">Sign Up</button></div>
                         </form>
                     </div>

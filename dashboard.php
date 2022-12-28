@@ -32,14 +32,13 @@ if (isset($_SESSION['id'])) {
         <div class="container" data-aos="fade-up">
 
             <div class="row">
-
                 <div class="col-lg-12 mb-5 mb-lg-0 section-title">
                     <h2 class="my-5 display-3 fw-bold ls-tight">
                         <br>
                         <span> Surveys </span></span>
                     </h2>
                     <p style="color: hsl(217, 10%, 50.8%)">
-                        Below are the following factors sets that you can answer.
+                        Below are the following survey sets that you can answer.
                     </p>
                 </div>
 
@@ -60,6 +59,10 @@ if (isset($_SESSION['id'])) {
 
         </div>
     </section>
+
+    <script>
+        $('#dashboard').addClass('active');
+    </script>
 
     <?php include 'includes/sources-2.html' ?>
     <?php include 'includes/footer.html' ?>

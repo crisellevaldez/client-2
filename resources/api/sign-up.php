@@ -12,14 +12,15 @@ $middlename = $_POST['middleName'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $gender = $_POST['gender'];
+$age = $_POST['age'];
 
 $type = 2;
 $status = 0;
 $code = random_int(10000, 99999);
 
-$sql = "INSERT INTO users (firstname, lastname, middlename, gender, email, password, type, status, code) VALUES (?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT INTO users (firstname, lastname, middlename, gender, age, email, password, type, status, code) VALUES (?,?,?,?,?,?,?,?,?,?)";
 $stmt= $conn->prepare($sql);
-$stmt->execute([$firstname, $lastname, $middlename, $gender, $email, $password, $type, $status, $code]);
+$stmt->execute([$firstname, $lastname, $middlename, $gender, $age, $email, $password, $type, $status, $code]);
 
 $name = $firstname." ".$lastname;
 $mail = new PHPMailer();
@@ -32,7 +33,7 @@ $mail->SMTPSecure = "tls";
 $mail->Port       = 587;
 $mail->Host       = "smtp.gmail.com";
 $mail->Username   = "dummyemailforclient@gmail.com";
-$mail->Password   = "ijruemizrsnrdlmc";
+$mail->Password   = "sqldlersrimrmmiw";
 
 $mail->IsHTML(true);
 $mail->AddAddress($email, $name);

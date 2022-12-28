@@ -26,7 +26,7 @@ if (isset($_SESSION['id'])) {
     <?php include 'includes/nav.php' ?>
 
     <!-- ======= Contact Section ======= -->
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 100px">
         <section id="" class="contact mt-5">
             <div class="container" data-aos="fade-up">
 
@@ -96,6 +96,10 @@ if (isset($_SESSION['id'])) {
             </div>
         </div>
     </div>
+
+    <script>
+        $('.profile').addClass('active');
+    </script>
 
     <?php include 'includes/sources-2.html' ?>
     <?php include 'includes/footer.html' ?>

@@ -31,7 +31,7 @@
 <body>
     <?php include 'includes/nav.php' ?>
 
-    <section id="team" class="team section-bg mt-5">
+    <section id="team" class="team section-bg " style="margin-top: 100px">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -43,6 +43,7 @@
                 <div class="row">
                     <div class="col-12 mb-3 d-flex justify-content-center">
                         <a href="questionnaires.php" class="btn btn-custom m-1"> Manage Survey Questionnaire </a>
+                        <a href="gathered-data.php" class="btn btn-custom m-1"> Gathered Data </a>
                     </div>
 
                     <div class="col-xl col-md-6 col-12">
@@ -111,6 +112,10 @@
 
             </div>
     </section>
+
+    <script>
+        $('#dashboard').addClass('active');
+    </script>
 
     <?php include 'includes/sources-2.html' ?>
     <?php include 'includes/footer.html' ?>

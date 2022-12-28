@@ -11,13 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt->execute();
     $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $arr_ques = array ();
     if ($questions) {
-      foreach ($questions as $question) {
-        $arr_ques[] = $question;
-      }
 
-      echo json_encode($arr_ques);
+      $sql1 = 'SELECT * FROM answers WHERE survey_id = :survey_id';
+      $stmt1 = $conn->prepare($sql1);
+      $stmt1->execute(['survey_id' => $survey_id]);
+      $rows1 = $stmt1->fetchAll();
+
+      $new_arr = array();
+      $new_arr[] = $questions;
+      $new_arr[] = $rows1;
+
+      echo json_encode($new_arr);
     }
 
     else {
