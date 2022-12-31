@@ -40,20 +40,15 @@ if (isset($_SESSION['id'])) {
             <div class="row">
 
                 <div class="row mt-5">
-                    <div class="col-lg-6 ">
+                    <div class="col-lg-6 col-12">
                         <label> Select a Survey to view Chart: </label>
-                        <select id="survey" class="form-select form-select-lg mt-2">
-<<<<<<< HEAD
-
-=======
-                            
->>>>>>> f30d7416b9af4d78af85708124e60c2e5a12259f
+                        <select id="survey" class="form-select form-select-lg mt-2 w-100">
                         </select>
                     </div>
                 </div>
 
                 <div class="col-12">
-                    <button type="button" class="btn btn-outline-success float-end mb-3">
+                    <button type="button" class="btn btn-outline-success float-end mb-3 mt-1">
                         Export <img src="resources/imgs/excel.png" style="width: 25px">
                     </button>
                 </div>

@@ -6,29 +6,35 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $surveyId = $_GET['survey-id'];
-    $status = $_GET['status'];
+    $path = '';
 
-    $path = "../results/survey-".$surveyId;    
+    if ($surveyId != 0) {
 
-    if ($status == 3) {
-        $path .= "/low";
-    }
+        $path = "../results/survey-" . $surveyId;
+        
+        if (isset($_GET['status'])) {
+            $status = $_GET['status'];
+            if ($status == 3) {
+                $path .= "/low";
+            } else if ($status == 2) {
+                $path .= "/mid";
+            } else {
+                $path .= "/high";
+            }
+        }
 
-    else if ($status == 2) {
-        $path .= "/mid";
+        $files = array();
+
+        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::KEY_AS_PATHNAME), RecursiveIteratorIterator::CHILD_FIRST) as $file => $info) {
+            if ($info->isFile() && $info->isReadable()) {
+                $files[] = array('filename' => $info->getFilename(), 'path' => realpath($info->getPathname()));
+            }
+        }
+
+        print_r(json_encode($files, true));
     }
 
     else {
-        $path .= "/high";
+        echo 0;
     }
-
-    $files=array();
-
-    foreach( new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $path, RecursiveDirectoryIterator::KEY_AS_PATHNAME ), RecursiveIteratorIterator::CHILD_FIRST ) as $file => $info ) {
-        if( $info->isFile() && $info->isReadable() ){
-            $files[]=array('filename'=>$info->getFilename(),'path'=>realpath( $info->getPathname() ) );
-        }
-    }
-
-    print_r(json_encode($files,true));
 }

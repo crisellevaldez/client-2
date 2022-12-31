@@ -106,7 +106,7 @@ $(document).ready(function () {
                         })
 
                         setTimeout(function () {
-                            signIn();
+                            location.href = "dashboard.php";
                         }, 2000);
 
                     }

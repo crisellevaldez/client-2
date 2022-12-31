@@ -29,7 +29,7 @@ function signIn() {
                 url: "resources/api/sign-out.php",
                 method: "GET",
                 success: function (res) {
-                    location.href= "sign-in.php";
+                    location.href = "sign-in.php";
                 }
             })
         }
@@ -84,9 +84,9 @@ $(document).ready(function () {
 
             cPassword: {
                 required: true,
-                equalTo : "#password"
+                equalTo: "#password"
             },
-            
+
 
             email: {
                 required: true,
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
             cPassword: {
                 required: "Please confirm your password.",
-                equalTo : "Password do not match."
+                equalTo: "Password do not match."
             },
 
             firstName: {
@@ -138,7 +138,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         if ($(this).valid()) {
-           
+
             let data = new FormData(this);
             $.ajax({
                 url: "resources/api/sign-in.php",

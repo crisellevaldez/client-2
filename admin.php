@@ -40,11 +40,11 @@ if (isset($_SESSION['id'])) {
             <div class="row">
                 <div class="row">
                     <div class="col-12 mb-3 d-flex justify-content-center">
-                        <!-- <a href="questionnaires.php" class="btn btn-custom m-1"> Manage Survey Questionnaire </a> -->
                         <a href="gathered-data.php" class="btn btn-custom m-1"> Gathered Data </a>
+                        <a href="stress-management.php" class="btn btn-custom m-1"> Stress Management </a>
                     </div>
 
-                    <div class="col-xl col-md-6 col-12">
+                    <div class="col-xl col-md-6 col-12 mb-2">
                         <div class="card">
                             <div class="card-body">
                                 <div class="align-items-center row">
@@ -61,7 +61,7 @@ if (isset($_SESSION['id'])) {
                         </div>
                     </div>
 
-                    <div class="col-xl col-md-6 col-12">
+                    <div class="col-xl col-md-6 col-12 mb-2">
                         <div class="card">
                             <div class="card-body">
                                 <div class="align-items-center row">
@@ -78,7 +78,7 @@ if (isset($_SESSION['id'])) {
                         </div>
                     </div>
 
-                    <div class="col-xl col-md-6 col-12">
+                    <div class="col-xl col-md-12 col-12 mb-2">
                         <div class="card">
                             <div class="card-body">
                                 <div class="align-items-center row">

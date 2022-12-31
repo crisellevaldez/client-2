@@ -73,6 +73,11 @@ const chooseVisual = (type, path) => {
                         <img class="img-fluid" src="resources/results${path}">
                     </div>`
             break
+        case "jpeg":
+            visual += `<div class="col-12 text-center">
+                        <img class="img-fluid" src="resources/results${path}">
+                    </div>`
+            break
     }
 
     $('#visual').html(visual)
@@ -89,7 +94,7 @@ const fillResults = (...data) => {
                 <div class="row">
                     <div class="col-12">
                         ${htmlData} <br> <br>
-                        <button class="btn btn-primary" id="choose" onClick='selectVisual(${num}, ${surveyId})'> Choose your visual </button>
+                        <button class="btn btn-custom-1" id="choose" onClick='selectVisual(${num}, ${surveyId})'> Choose your visual </button>
                     </div>
 
                     <div class="col-12" id="visual">
